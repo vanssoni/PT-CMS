@@ -1,73 +1,150 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+<head>
+    <!-- Meta and Title -->
+    <meta charset="utf-8">
+    <title>Login|Regsiter</title>
+    <meta name="keywords" content="HTML5, Bootstrap 3, Admin Template, UI Theme"/>
+    <meta name="description" content="Alliance - A Responsive HTML5 Admin UI Framework">
+    <meta name="author" content="ThemeREX">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+    <!-- Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+    <!-- CSS - theme -->
+    <link rel="stylesheet" type="text/css" href="assets/skin/default_skin/less/theme.min_2.css">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <!-- CSS - allcp forms -->
+    <link rel="stylesheet" type="text/css" href="assets/allcp/forms/css/forms_2.css">
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon_2.png">
+
+    <!-- Plugins -->
+    <link rel="stylesheet" type="text/css" href="assets/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min_2.css">
+
+    <!-- IE8 HTML5 support -->
+</head>
+
+<body class="utility-page sb-l-c sb-r-c">
+
+<!-- Body Wrap -->
+<div id="main" class="animated fadeIn">
+
+    <!-- Main Wrapper -->
+    <section id="content_wrapper">
+
+        <div id="canvas-wrapper">
+            <canvas id="demo-canvas"></canvas>
+        </div>
+
+        <!-- Content -->
+        <section id="content">
+
+            <!-- Login Form -->
+            <div class="allcp-form theme-primary mw320" id="login">
+                <div class="bg-primary mw600 text-center mb20 br3 pt15 pb10">
+                    <img src="assets/img/logo_2.png" alt=""/>
+                </div>
+                <div class="panel mw320">
+
+                    <form method="post" action="myadmin-html_axiomthemes_default_2.html" id="form-login">
+                        <div class="panel-body pn mv10">
+
+                            <div class="section">
+                                <label for="username" class="field prepend-icon">
+                                    <input type="text" name="username" id="username" class="gui-input"
+                                           placeholder="Username">
+                                    <span class="field-icon">
+                                        <i class="fa fa-user"></i>
                                     </span>
-                                @enderror
+                                </label>
                             </div>
-                        </div>
+                            <!-- /section -->
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
+                            <div class="section">
+                                <label for="password" class="field prepend-icon">
+                                    <input type="text" name="password" id="password" class="gui-input"
+                                           placeholder="Password">
+                                    <span class="field-icon">
+                                        <i class="fa fa-lock"></i>
                                     </span>
-                                @enderror
+                                </label>
                             </div>
-                        </div>
+                            <!-- /section -->
 
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                            <div class="section">
+                                <div class="bs-component pull-left pt5">
+                                    <div class="radio-custom radio-primary mb5 lh25">
+                                        <input type="radio" id="remember" name="remember">
+                                        <label for="remember">Remember me</label>
+                                    </div>
                                 </div>
+                                <button type="submit" class="btn btn-bordered btn-primary pull-right">Log in</button>
                             </div>
-                        </div>
+                            <!-- /section -->
 
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-                            </div>
                         </div>
+                        <!-- /Form -->
                     </form>
                 </div>
+                <!-- /Panel -->
             </div>
-        </div>
-    </div>
+            <!-- /Spec Form -->
+
+        </section>
+        <!-- /Content -->
+
+    </section>
+    <!-- /Main Wrapper -->
+
 </div>
-@endsection
+<!-- /Body Wrap  -->
+
+<!-- Scripts -->
+
+<!-- jQuery -->
+<script src="assets/js/jquery/jquery-1.11.3.min.js"></script>
+<script src="assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
+
+<!-- CanvasBG JS -->
+<script src="assets/js/plugins/canvasbg/canvasbg.js"></script>
+
+<!-- Theme Scripts -->
+<!-- <script src="assets/js/utility/utility.js"></script> -->
+<script src="assets/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
+<script src="assets/js/demo/demo.js"></script>
+<script src="assets/js/main.js"></script>
+
+<!-- Page JS -->
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        "use strict";
+
+        // Init Theme Core
+        Core.init();
+
+        // Init Demo JS
+        Demo.init();
+
+        // Init CanvasBG
+        CanvasBG.init({
+            Loc: {
+                x: window.innerWidth / 5,
+                y: window.innerHeight / 10
+            }
+        });
+
+    });
+</script>
+
+<!-- /Scripts -->
+
+</body>
+
+</html>
+
