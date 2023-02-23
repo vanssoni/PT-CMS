@@ -35,7 +35,7 @@
 
     <!-- CSS - allcp forms -->
     <link rel="stylesheet" type="text/css" href="assets/allcp/forms/css/forms.css">
-
+    <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
     <!-- Favicon -->
     <link rel="shortcut icon" href="assets/img/favicon.png">
 
@@ -77,17 +77,7 @@
              <!-- /Content -->
             <!-- Page Footer -->
             <footer id="content-footer">
-                <div class="row">
-                    <div class="col-md-6">
-                        <span class="footer-legal">Copyright © 2016. All rights reserved. <a href="#">Therms of use</a> | <a href="#">Privacy Policy</a></span>
-                    </div>
-                    <div class="col-md-6 text-right">
-                        <span class="footer-meta"></span>
-                        <a href="#content" class="footer-return-top">
-                            <span class="fa fa-angle-up"></span>
-                        </a>
-                    </div>
-                </div>
+                @include('layouts.partials.footer')
             </footer>
             <!-- /Page Footer -->
         </section>
@@ -95,7 +85,7 @@
     <!-- /Body Wrap  -->
 
     <!-- Scripts -->
-
+    
     <!-- jQuery -->
     <script src="assets/js/jquery/jquery-1.11.3.min.js"></script>
     <script src="assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
@@ -116,7 +106,7 @@
     <!-- FullCalendar Plugin -->
     <script src="assets/js/plugins/fullcalendar/lib/moment.min.js"></script>
     <script src="assets/js/plugins/fullcalendar/fullcalendar.min.js"></script>
-
+    
     <!-- Date/Month - Pickers -->
     <script src="assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
     <script src="assets/allcp/forms/js/jquery-ui-datepicker.min.js"></script>
@@ -134,6 +124,9 @@
     <script src="assets/js/demo/widgets.js"></script>
     <script src="assets/js/demo/widgets_sidebar.js"></script>
     <script src="assets/js/pages/dashboard1.js"></script>
+    <script src="assets/js/custom.js"></script>
     <!-- /Scripts -->
+    @include('layouts.partials.alerts')
+
 </body>
 </html>

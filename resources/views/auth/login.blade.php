@@ -51,17 +51,23 @@
                 </div>
                 <div class="panel mw320">
 
-                    <form method="post" action="myadmin-html_axiomthemes_default_2.html" id="form-login">
+                    <form method="post" action="{{ route('login') }}" id="form-login">
+                        @csrf
                         <div class="panel-body pn mv10">
 
                             <div class="section">
-                                <label for="username" class="field prepend-icon">
-                                    <input type="text" name="username" id="username" class="gui-input"
-                                           placeholder="Username">
+                                <label for="email" class="field prepend-icon">
+                                    <input type="text" name="email" id="email" class="gui-input"
+                                           placeholder="Email or Username">
                                     <span class="field-icon">
                                         <i class="fa fa-user"></i>
                                     </span>
                                 </label>
+                                @error('email')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <!-- /section -->
 
@@ -73,6 +79,11 @@
                                         <i class="fa fa-lock"></i>
                                     </span>
                                 </label>
+                                @error('password')
+                                    <span class="text-danger" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <!-- /section -->
 

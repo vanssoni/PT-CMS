@@ -9,12 +9,12 @@
             <div class="sidebar-widget author-widget">
                 <div class="media">
                     <a class="media-left profile-online" href="#">
-                        <img src="assets/img/avatars/profile_avatar.jpg" class="img-responsive" alt="">
+                        <img src="{{\Auth::user()->profile_pic}}"  class="img-responsive" alt="">
                     </a>
 
                     <div class="media-body">
                         <div>Welcome</div>
-                        <div class="media-author">John Iverson</div>
+                        <div class="media-author">{{\Auth::user()->first_name}}</div>
                     </div>
                 </div>
             </div>

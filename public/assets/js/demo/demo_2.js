@@ -20,9 +20,6 @@ var Demo = function() {
       if ($('body.basic-timeline').length || $('body.forms-validation').length) {
         return;
       }
-      e.preventDefault;
-      alert('Your form has submitted!');
-      return false;
     });
 
     // give file-upload preview onclick functionality

@@ -13,10 +13,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
+//auth routes(login regsiter)
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
+//authenticated routes
+Route::group(['middleware' => ['auth:web']], function() {
+    
+    Route::get('/', 'HomeController@index');
+    // Route::resource(UserController::class);
+    Route::get('/profile', function(){
+        return view('modules.users.my-profile');
+    });
+    Route::post('/update-profile', 'UserController@updateProfile');
+    Route::get('/logout', function(){
+        \Auth::logout();
+        return back();
+    });
+});
