@@ -45,4 +45,8 @@ class User extends Authenticatable
         $profile_pic = $this->attributes['profile_pic'] ? url('/storage/users/'.$this->attributes['profile_pic']) :  url('/assets/img/avatars/profile_avatar.jpg');
         return $profile_pic;
     }
+    public function getNameAttribute(){
+        if(isset($this->attributes['first_name']))
+        return $this->attributes['first_name'] . ' '.$this->attributes['last_name'];
+    }
 }

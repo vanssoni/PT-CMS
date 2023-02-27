@@ -20,11 +20,17 @@ Auth::routes();
 Route::group(['middleware' => ['auth:web']], function() {
     
     Route::get('/', 'HomeController@index');
-    // Route::resource(UserController::class);
+
+    //users resource conrtol the creation/updation and deletion of users
+    Route::resource('users', UserController::class);
     Route::get('/profile', function(){
         return view('modules.users.my-profile');
     });
+    
     Route::post('/update-profile', 'UserController@updateProfile');
+    //Roles Route
+    Route::resource('roles', RoleController::class);
+
     Route::get('/logout', function(){
         \Auth::logout();
         return back();

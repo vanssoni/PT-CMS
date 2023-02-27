@@ -16,6 +16,12 @@ class RolesSeeder extends Seeder
         if (!Role::where('name', 'admin')->exists()) {
             Role::create(['name' => 'admin']);
         }
+        if (!Role::where('name', 'student')->exists()) {
+            Role::create(['name' => 'student']);
+        }
+        if (!Role::where('name', 'instructor')->exists()) {
+            Role::create(['name' => 'instructor']);
+        }
         $user = User::where('email', 'admin@pt.com')->first();
 
         if($user && Role::where('name', 'admin')->exists() ){

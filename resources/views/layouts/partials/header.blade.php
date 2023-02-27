@@ -1,8 +1,8 @@
  <header class="navbar navbar-fixed-top">
     <div class="navbar-logo-wrapper dark bg-dark">
         <a class="navbar-logo-image" href="/">
-            <img src="assets/img/logo.png" alt="" class="sb-l-o-logo">
-            <img src="assets/img/logo_small.png" alt="" class="sb-l-m-logo">
+            <img src="/assets/img/logo.png" alt="" class="sb-l-o-logo">
+            <img src="/assets/img/logo_small.png" alt="" class="sb-l-m-logo">
         </a>
     </div>
     <span id="sidebar_left_toggle" class="ad ad-lines navbar-nav navbar-left"></span>
@@ -24,11 +24,19 @@
                 <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="dropdown-menu w230" role="menu">
-                <li><a href="#">Create User</a></li>
-                <li><a href="#">Create Student</a></li>
-                <li><a href="#">Create Campus</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Enrolled Students</a></li>
+                @can('create users')
+                    <li><a href="{{route('users.create')}}">Create User</a></li>
+                @endcan
+                @can('create students')
+                    <li><a href="{{route('users.create')}}">Create Student</a></li>
+                @endcan
+                @can('create campus')
+                    <li><a href="#">Create Campus</a></li>
+                @endcan
+                @can('view students')
+                    <li class="divider"></li>
+                    <li><a href="#">Enrolled Students</a></li>
+                @endcan
             </ul>
         </li>
     </ul>

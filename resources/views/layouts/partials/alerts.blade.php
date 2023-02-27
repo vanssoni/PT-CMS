@@ -1,7 +1,7 @@
 @if (\Session::has('success') || \Session::has('error'))
-    <link rel="stylesheet" type="text/css" href="assets/css/sweetalert.css">
+    {{-- <link rel="stylesheet" type="text/css" href="/assets/css/sweetalert.css">
   
-    <script src="assets/js/sweetalert.js"></script>
+    <script src="/assets/js/sweetalert.js"></script> --}}
 
     <style>
         button.swal2-close {
@@ -57,6 +57,9 @@
             jQuery(`<span class="text-danger" role="alert">
                 <strong>`+value[0]+`</strong>
             </span>`).insertAfter("input[name='"+key+"']");
+            jQuery(`<span class="text-danger" role="alert">
+                <strong>`+value[0]+`</strong>
+            </span>`).insertAfter("select[name='"+key+"']");
         });
 
     </script>

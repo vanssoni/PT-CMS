@@ -12,3 +12,54 @@ span.profile-online img {
 input[type='text'], input[type='number']{
     color:black !important;
 }
+.ml-2{
+    margin-left: 10px !important;
+}
+form a.btn.btn-warning.btn-icon-text.btn-xs, form button.btn.btn-danger.btn-icon-text.btn-xs.delete{
+    padding: 7px 10px;
+    border-radius: 25%;
+}
+form a.btn.btn-warning.btn-icon-text.btn-xs i, form button.btn.btn-danger.btn-icon-text.btn-xs.delete i{
+    font-size: 15px !important;
+}
+.checkbox-custom-mod input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #65bdf8;
+    transition: all 0.3s ease-in-out;
+    outline: none;
+    cursor: pointer;
+}
+
+.checkbox-custom-mod input[type="checkbox"]:checked {
+    background-color: transparent;
+}
+
+.checkbox-custom-mod input[type="checkbox"]:checked:after {
+    content: "\2714";
+    font-size: 16px;
+    position: relative;
+    top: -3px;
+    color: #65bdf8;
+}
+
+.checkbox-custom-mod input[type="checkbox"]:focus {
+    border: 2px solid #65bdf8;
+}
+
+.checkbox-custom-mod label {
+    display: inline-block;
+    vertical-align: middle;
+    word-wrap: break-word;
+    max-width: calc(100% - 28px); /* set max-width to the available space minus the checkbox and margin */
+}
+  
+
+  
+  

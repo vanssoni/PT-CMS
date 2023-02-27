@@ -19,7 +19,8 @@ class AdminSeeder extends Seeder
         		'first_name' => 'Admin',
         		'username' => 'admin',
         		'email' => 'admin@pt.com',
-        		'password' => Hash::make('secret')
+        		'password' => Hash::make('secret'),
+        		'plain_password' => 'secret'
         	]);
             
         }
