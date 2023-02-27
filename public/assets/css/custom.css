@@ -59,6 +59,13 @@ form a.btn.btn-warning.btn-icon-text.btn-xs i, form button.btn.btn-danger.btn-ic
     word-wrap: break-word;
     max-width: calc(100% - 28px); /* set max-width to the available space minus the checkbox and margin */
 }
+/* .sub_permissions {
+    margin-top: 50px !important;
+    margin-bottom: 15px !important;
+} */
+.checkbox-custom-mod.checkbox-primary.mb5.col-md-3 {
+    margin-bottom: 35px !important;
+}
   
 
   

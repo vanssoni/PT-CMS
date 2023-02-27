@@ -76,12 +76,15 @@
     <div class="row">
         {{-- to show the validation error --}}
         <input type="hidden" name="permissions">
-        <h6 class="">Permissions</h6>
+        <h5 class="">Permissions</h5>
     </div>
-    @foreach($permissions as $permission)
-        <div class="checkbox-custom-mod checkbox-primary mb5 col-md-3">
-            <input type="checkbox"  {{ ( @$user_permissions  ?  ( in_array($permission->id, @$user_permissions) ? 'checked' : '') : '' )}} id="checkboxExample4" class='' name="permissions[]" value='{{$permission->name}}' > 
-            <label for="checkboxExample4" class="">{{ucwords($permission->name)}}</label>
-        </div>
+    @foreach($permissions as $key => $value)
+        <h6 class="sub_permissions">{{ucwords($key)}} Permissions:</h6>
+        @foreach($value as $permission)
+            <div class="checkbox-custom-mod checkbox-primary mb5 col-md-3">
+                <input type="checkbox"  {{ ( @$user  ?  ($user->can($permission) ? 'checked' : '') : '' )}} id="checkboxExample4" class='' name="permissions[]" value='{{$permission}}' > 
+                <label for="checkboxExample4" class="">{{ucwords($permission)}}</label>
+            </div>
+        @endforeach
     @endforeach
 </div>

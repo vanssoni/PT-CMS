@@ -22,7 +22,7 @@ class PermissionsSeeder extends Seeder
             foreach( $opArr as $operation){
                 $conPermisson = $operation.' '.$permission;
                 if(!Permission::where('name', $conPermisson)->exists()){
-                    Permission::create(['name' => $conPermisson]);
+                    Permission::create(['name' => $conPermisson,'group' => $permission]);
                 }
                 //grant permission to user
                 if($user){

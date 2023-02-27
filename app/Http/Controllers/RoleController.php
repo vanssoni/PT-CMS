@@ -17,7 +17,7 @@ class RoleController extends Controller
     }
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
-            'name' => "required|string|regex:/^\S*$/u|max:255|unique:roles",
+            'name' => "required|string|max:255|unique:roles",
         ]);
  
         if ($validator->fails()) {
@@ -37,7 +37,7 @@ class RoleController extends Controller
     }
     public function update(Request $request, $id){
         $validator = Validator::make($request->all(), [
-            'name' => "required|string|regex:/^\S*$/u|max:255|unique:roles,name, $id",
+            'name' => "required|string|max:255|unique:roles,name, $id",
         ]);
  
         if ($validator->fails()) {

@@ -51,9 +51,12 @@ class UserController extends Controller
     }
 
     public function create(Request $request){
-        $permissions = Permission::orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
+        $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
                 ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
-                ->get();
+                ->get()->groupBy('group')->map(function($items) {
+                    return $items->pluck('name');
+                })
+                ->toArray();
         $roles = Role::whereNotIn('name', ['admin', 'student', 'instructor'])->orderBy('name', 'ASC')->get();
         return view('modules.users.create', compact('permissions', 'roles'));
     }
@@ -96,12 +99,14 @@ class UserController extends Controller
     public function edit(Request $request, $id){
         
         $user = User::find($id);
-        $permissions = Permission::orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
+        $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
                 ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
-                ->get();
+                ->get()->groupBy('group')->map(function($items) {
+                    return $items->pluck('name');
+                })
+                ->toArray();
         $roles = Role::whereNotIn('name', ['admin', 'student', 'instructor'])->orderBy('name', 'ASC')->get();
-        $user_permissions =  $user->permissions()->pluck('id')->toArray();
-        return view('modules.users.edit', compact('user', 'permissions', 'user_permissions', 'roles'));
+        return view('modules.users.edit', compact('user', 'permissions', 'roles'));
     }
 
     public function update(Request $request, $id){
