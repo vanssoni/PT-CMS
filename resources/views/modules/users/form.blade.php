@@ -82,8 +82,8 @@
         <h6 class="sub_permissions">{{ucwords($key)}} Permissions:</h6>
         @foreach($value as $permission)
             <div class="checkbox-custom-mod checkbox-primary mb5 col-md-3">
-                <input type="checkbox"  {{ ( @$user  ?  ($user->can($permission) ? 'checked' : '') : '' )}} id="checkboxExample4" class='' name="permissions[]" value='{{$permission}}' > 
-                <label for="checkboxExample4" class="">{{ucwords($permission)}}</label>
+                <input type="checkbox"  {{ ( @$user  ?  ($user->can($permission) ? 'checked' : '') : '' )}} id="checkbox-{{$permission}}" class='' name="permissions[]" value='{{$permission}}' > 
+                <label for="checkbox-{{$permission}}" class="">{{ucwords($permission)}}</label>
             </div>
         @endforeach
     @endforeach

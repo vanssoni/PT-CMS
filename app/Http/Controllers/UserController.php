@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class UserController extends Controller
 {
     public function updateProfile(Request $request){
@@ -44,6 +44,9 @@ class UserController extends Controller
     }
 
     public function index(Request $request){
+        //authorize the action
+        $this->authorize('view users', \Auth::user());
+
         $users = User::with('roles')->whereHas('roles', function($q){
             $q->whereNotIn('name', ['admin', 'student', 'instructor']);
         })->where('id', '!=',\Auth::id())->get();
@@ -51,6 +54,8 @@ class UserController extends Controller
     }
 
     public function create(Request $request){
+        //authorize the action
+        $this->authorize('create users', \Auth::user());
         $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
                 ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
                 ->get()->groupBy('group')->map(function($items) {
@@ -62,6 +67,9 @@ class UserController extends Controller
     }
 
     public function store(Request $request){
+        //authorize the action
+        $this->authorize('create users', \Auth::user());
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username",
@@ -92,12 +100,17 @@ class UserController extends Controller
     }
 
     public function view(Request $request, $id){
+        //authorize the action
+        $this->authorize('view users', \Auth::user());
+
         $user = User::find($id);
         return view('modules.users.view', compact('user'));
     }
 
     public function edit(Request $request, $id){
-        
+        //authorize the action
+        $this->authorize('edit users', \Auth::user());
+
         $user = User::find($id);
         $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
                 ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
@@ -110,6 +123,8 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id){
+        //authorize the action
+        $this->authorize('edit users', \Auth::user());
 
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
@@ -140,6 +155,10 @@ class UserController extends Controller
         return redirect()->route('users.index')->withSuccess('User Updated Successfully!');
     }
     public function destroy( $id){
+        
+        //authorize the action
+        $this->authorize('delete users', \Auth::user());
+
         $user = User::find($id);
         $user->delete();
         return redirect()->route('users.index')->withSuccess('User deleted Successfully!');

@@ -9,13 +9,21 @@ use Illuminate\Support\Facades\Validator;
 class RoleController extends Controller
 {
     public function index(Request $request){
+        //authorize the action
+        $this->authorize('view roles', \Auth::user());
+
         $roles = Role::whereNotIn('name', ['admin', 'student', 'instructor'])->get();
         return view('modules.roles.index', compact('roles'));
     }
     public function create(Request $request){
+        //authorize the action
+        $this->authorize('create roles', \Auth::user());
+
         return view('modules.roles.create');
     }
     public function store(Request $request){
+         //authorize the action
+        $this->authorize('create roles', \Auth::user());
         $validator = Validator::make($request->all(), [
             'name' => "required|string|max:255|unique:roles",
         ]);
@@ -32,10 +40,16 @@ class RoleController extends Controller
     }
 
     public function edit(Request $request, $id){
+        //authorize the action
+        $this->authorize('edit roles', \Auth::user());
+
         $role = Role::find($id);
         return view('modules.roles.edit', compact('role'));
     }
     public function update(Request $request, $id){
+        //authorize the action
+        $this->authorize('edit roles', \Auth::user());
+
         $validator = Validator::make($request->all(), [
             'name' => "required|string|max:255|unique:roles,name, $id",
         ]);
@@ -52,7 +66,9 @@ class RoleController extends Controller
         return redirect()->route('roles.index')->withSuccess('Role updated!');
     }
     public function destroy( $id){
-        
+        //authorize the action
+        $this->authorize('delete roles', \Auth::user());
+
         $role = Role::find($id);
         $role->delete();
         return redirect()->route('roles.index')->withSuccess('Role deleted!');

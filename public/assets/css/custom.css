@@ -66,6 +66,13 @@ form a.btn.btn-warning.btn-icon-text.btn-xs i, form button.btn.btn-danger.btn-ic
 .checkbox-custom-mod.checkbox-primary.mb5.col-md-3 {
     margin-bottom: 35px !important;
 }
+#datatable_paginate a {
+    padding: 5px;
+    border: 1px solid;
+    color: #10cfbd;
+    margin: 3px;
+    text-decoration: none !important;
+}
   
 
   
