@@ -6,12 +6,12 @@
         <div class="allcp-form">
             <div class="panel">
                 <div class="panel-heading">
-                    <div class="panel-title">Create New user
+                    <div class="panel-title">Upload New PDF form
                     </div>
                 </div>
                 <div class="panel-body">
-                {!! Form::open(['route' => 'users.store', 'class' => 'forms-sample','files'  => true,]) !!}
-                    @include('modules.users.form')
+                {!! Form::open(['route' => 'pdf-forms.store', 'class' => 'forms-sample','files'  => true,]) !!}
+                    @include('modules.pdf-forms.form')
                     {!! Form::submit('Create', ['class' => 'btn btn-primary ml-2']) !!}
                 {!! Form::close() !!}
                 </div>

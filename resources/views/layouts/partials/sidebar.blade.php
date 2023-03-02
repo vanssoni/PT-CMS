@@ -58,7 +58,7 @@
                     <a class="accordion-toggle" href="{{route('users.index')}}">
                         <span class="sidebar-title">Users</span>
                         <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa fa-group"></span>
+                        <span class="sb-menu-icon fa fa-user"></span>
                     </a>
                     <ul class="nav sub-nav">
                         <li>
@@ -73,6 +73,29 @@
                                 </a>
                             </li>
                          @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('view pdf forms')
+                <li>
+                    <a class="accordion-toggle" href="{{route('pdf-forms.index')}}">
+                        <span class="sidebar-title">Pdf Forms</span>
+                        <span class="caret"></span>
+                        <span class="sb-menu-icon fa fa-file"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a href="{{route('pdf-forms.index')}}">
+                                All Pdf Forms 
+                            </a>
+                        </li>
+                        @can('create users')
+                            <li>
+                                <a href="{{route('pdf-forms.create')}}">
+                                    Upload Pdf form 
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </li>
             @endcan

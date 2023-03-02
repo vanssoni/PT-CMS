@@ -30,6 +30,8 @@ Route::group(['middleware' => ['auth:web']], function() {
     Route::post('/update-profile', 'UserController@updateProfile');
     //Roles Route
     Route::resource('roles', RoleController::class);
+    //pdf form routes
+    Route::resource('pdf-forms', PdfFormController::class);
 
     Route::get('/logout', function(){
         \Auth::logout();

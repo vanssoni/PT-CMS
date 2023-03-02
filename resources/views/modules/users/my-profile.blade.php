@@ -66,7 +66,7 @@
                                     <div class="section">
                                         <label class="field prepend-icon file">
                                             <input type="file" class="gui-file" name="profile_pic" id="file2"
-                                                onChange="document.getElementById('uploader2').value = this.value;">
+                                                onChange="document.getElementById('uploader2').value = this.value;" accept="image/*">
                                             <input type="text" class="gui-input" id="uploader2"
                                                 placeholder="Select File" autocomplete="new_name" value='Choose File'>
                                             <span class="button">Choose File</span>

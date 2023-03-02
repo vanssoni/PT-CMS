@@ -9,7 +9,7 @@ span.profile-online img {
     height: 40px !important;
     object-fit: cover !important;
 }
-input[type='text'], input[type='number']{
+input[type='text'], input[type='number'],  input[type='password'], select{
     color:black !important;
 }
 .ml-2{
@@ -73,7 +73,13 @@ form a.btn.btn-warning.btn-icon-text.btn-xs i, form button.btn.btn-danger.btn-ic
     margin: 3px;
     text-decoration: none !important;
 }
-  
+.user-profile img {
+    width: 105px;
+    height: 105px;
+    object-fit: cover;
+    border-radius: 32%;
+    border: 1px solid;
+}
 
   
   

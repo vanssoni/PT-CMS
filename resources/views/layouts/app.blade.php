@@ -134,6 +134,6 @@
     <script src="/assets/js/custom.js"></script>
     <!-- /Scripts -->
     @include('layouts.partials.alerts')
-
+    @stack('scripts')
 </body>
 </html>
