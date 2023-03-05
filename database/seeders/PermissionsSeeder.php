@@ -15,7 +15,7 @@ class PermissionsSeeder extends Seeder
     public function run(): void
     {
         // Create permissions
-        $permissionsArr = ['students', 'schedules', 'users', 'instructors', 'roles', 'fees', 'road tests', 'pdf forms', 'student progress'];
+        $permissionsArr = ['students', 'schedules', 'users', 'instructors', 'roles', 'fees', 'road tests', 'pdf forms', 'student progress', 'subjects', 'courses'];
         $opArr = ['create', 'view', 'edit', 'delete'];
         $user = User::where('email', 'admin@pt.com')->first();
         foreach( $permissionsArr as $permission){
