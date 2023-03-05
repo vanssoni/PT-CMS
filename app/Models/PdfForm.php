@@ -14,8 +14,8 @@ class PdfForm extends Model
         'created_at',
         'updated_at',
     ];
-    public function getProfilePicAttribute(){
+    public function getPdfAttribute(){
         $pdf = @$this->attributes['pdf'] ? url('/storage/pdf-forms/'.@$this->attributes['pdf']) : '';
-        return $profile_pic;
+        return $pdf;
     }
 }
