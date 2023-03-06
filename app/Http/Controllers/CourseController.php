@@ -3,65 +3,94 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class CourseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index(): Response
-    {
-        //
+    public function index(Request $request){
+        //authorize the action
+        $this->authorize('view courses', \Auth::user());
+
+        $courses = Course::get();
+        return view('modules.courses.index', compact('courses'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): Response
-    {
-        //
+    public function create(Request $request){
+        //authorize the action
+        $this->authorize('create courses', \Auth::user());
+        return view('modules.courses.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request): RedirectResponse
-    {
-        //
+    public function store(Request $request){
+        //authorize the action
+        $this->authorize('create courses', \Auth::user());
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'program_id' => "required",
+            'course_type' => 'required',
+            'course_time_type' => 'required',
+            'hours' => 'required',
+            'practice' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return back()
+            ->withErrors($validator)
+            ->withInput($request->all());
+        }
+        $course =  Course::create($request->except(['_token']));
+        return redirect()->route('courses.index')->withSuccess('Course Created Successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Course $course): Response
-    {
-        //
+    public function view(Request $request, $id){
+        //authorize the action
+        $this->authorize('view courses', \Auth::user());
+
+        $course = Course::find($id);
+        return view('modules.courses.view', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Course $course): Response
-    {
-        //
+    public function edit(Request $request, $id){
+        //authorize the action
+        $this->authorize('edit courses', \Auth::user());
+        $course = Course::find($id);
+        return view('modules.courses.edit', compact('course'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Course $course): RedirectResponse
-    {
-        //
-    }
+    public function update(Request $request, $id){
+        //authorize the action
+        $this->authorize('edit courses', \Auth::user());
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Course $course): RedirectResponse
-    {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'program_id' => "required",
+            'course_type' => 'required',
+            'course_time_type' => 'required',
+            'hours' => 'required',
+            'practice' => 'required',
+        ]);
+ 
+        if ($validator->fails()) {
+            return back()
+            ->withErrors($validator)
+            ->withInput($request->all());
+        }
+        $course = Course::find($id);
+        $course->update($request->except(['_token']));
+        return redirect()->route('courses.index')->withSuccess('Course Updated Successfully!');
+    }
+    public function destroy( $id){
+        
+        //authorize the action
+        $this->authorize('delete courses', \Auth::user());
+
+        $course = Course::find($id);
+        $course->delete();
+        return redirect()->route('courses.index')->withSuccess('Course deleted Successfully!');
     }
 }

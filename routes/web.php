@@ -30,6 +30,10 @@ Route::group(['middleware' => ['auth:web']], function() {
     Route::post('/update-profile', 'UserController@updateProfile');
     //Roles Route
     Route::resource('roles', RoleController::class);
+    //courses route
+    Route::resource('courses', CourseController::class);
+    //subjects route
+    Route::resource('subjects', SubjectController::class);
     //pdf form routes
     Route::resource('pdf-forms', PdfFormController::class);
 
