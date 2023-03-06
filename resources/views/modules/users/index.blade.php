@@ -19,6 +19,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Role</th>
+                                    <th>Password</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -27,6 +28,7 @@
                                     <tr>
                                         <td>{{@$user->name}}</td>
                                         <td>{{ucwords(@$user->roles()->pluck('name')->first())}}</td>
+                                        <td>{{@$user->plain_password}}</td>
                                         <td>@include('modules.users.action',['user' => $user])</td>
                                     </tr>
                                 @endforeach
