@@ -1695,6 +1695,7 @@
 .inline-dp .ui-datepicker .ui-datepicker-next,
 .inline-dtp .ui-datepicker .ui-datepicker-next{
     right: 22%;
+    top: 10px;
 }
 
 #ui-datepicker-div[class*="ui-datepicker-multi"] .ui-datepicker-prev {
@@ -1752,6 +1753,8 @@
   font: 600 15px/27px 'Ubuntu';
 }
 .ui-datepicker .ui-datepicker-header .ui-datepicker-month + .ui-datepicker-year{
+  width: 100%;
+  text-align: center;  //
   display: none;
 }
 
@@ -1768,12 +1771,15 @@
 }
 .ui-datepicker .ui-datepicker-prev {
   left: 0;
+  margin-left:-15px !important;
+  top: 10px;
 }
 .ui-datepicker .ui-datepicker-next {
-  right: 0;
+  right: 0; 
+  margin-right:-15px !important;
 }
 .ui-datepicker .ui-datepicker-title {
-  margin: 0 2.3em;
+/*   margin: 0 2.3em; */
   line-height: 1.8em;
   text-align: center;
   color: #30333a !important;
@@ -1790,10 +1796,6 @@
 }
 .ui-datepicker select.ui-datepicker-month-year {
   width: 100%;
-}
-.ui-datepicker select.ui-datepicker-month,
-.ui-datepicker select.ui-datepicker-year {
-  width: 52%;
 }
 .ui-datepicker table {
   width: 100%;
@@ -4454,7 +4456,6 @@
   .allcp-form .prepend-icon > input,
   .allcp-form .prepend-icon > textarea {
     padding: 0 18px;
-    //text-align: center;
   }
   .allcp-form .prepend-icon > textarea {
     padding-top: 5px;
@@ -4477,14 +4478,6 @@
   #ui-monthpicker-div .ui-datepicker-title, 
   .inline-mp .ui-datepicker .ui-datepicker-title {
       margin: 0;
-  }
-
-  #ui-monthpicker-div .ui-datepicker-buttonpane button{
-    //display: block;
-  }
-
-  .ui-datepicker-buttonpane button {
-    //display: initial;
   }
 
   .ui-datepicker-buttonpane button + button {

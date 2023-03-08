@@ -132,6 +132,7 @@
     <script src="/assets/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
     <script src="/assets/js/sweetalert.js"></script>
     <script src="/assets/js/custom.js"></script>
+    <script src="/assets/js/datepicker-custom.js"></script>
     <!-- /Scripts -->
     @include('layouts.partials.alerts')
     @stack('scripts')

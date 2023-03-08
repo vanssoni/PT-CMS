@@ -122,6 +122,29 @@
                     </ul>
                 </li>
             @endcan
+            @can('view students')
+                <li>
+                    <a class="accordion-toggle" href="{{route('students.index')}}">
+                        <span class="sidebar-title">Students</span>
+                        <span class="caret"></span>
+                        <span class="sb-menu-icon fa fa-group"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a href="{{route('students.index')}}">
+                                All students 
+                            </a>
+                        </li>
+                        @can('create students')
+                            <li>
+                                <a href="{{route('students.create')}}">
+                                Create Student
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
 
             @can('view pdf forms')
                 <li>

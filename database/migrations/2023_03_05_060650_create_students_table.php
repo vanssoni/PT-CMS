@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('address')->nullable();
             $table->string('phone')->nullable();
             $table->string('emergency_phone')->nullable();
-            $table->string('emergency_contact_number')->nullable();
+            $table->string('emergency_contact_name')->nullable();
             $table->string('dl')->nullable();
             $table->dateTime('expiry')->nullable();
             $table->string('sin')->nullable();

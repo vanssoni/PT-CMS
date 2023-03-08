@@ -34,6 +34,8 @@ Route::group(['middleware' => ['auth:web']], function() {
     Route::resource('courses', CourseController::class);
     //subjects route
     Route::resource('subjects', SubjectController::class);
+    //student routes
+    Route::resource('students', StudentController::class);
     //pdf form routes
     Route::resource('pdf-forms', PdfFormController::class);
 

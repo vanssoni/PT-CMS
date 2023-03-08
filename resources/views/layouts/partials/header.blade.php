@@ -24,19 +24,19 @@
                 <span class="fa fa-chevron-down"></span>
             </a>
             <ul class="dropdown-menu w230" role="menu">
-                @can('create users')
+                {{-- @can('create users') --}}
                     <li><a href="{{route('users.create')}}">Create User</a></li>
-                @endcan
-                @can('create students')
-                    <li><a href="{{route('users.create')}}">Create Student</a></li>
-                @endcan
-                @can('create campus')
+                {{-- @endcan --}}
+                {{-- @can('create students') --}}
+                    <li><a href="{{route('students.create')}}">Create Student</a></li>
+                {{-- @endcan --}}
+                {{-- @can('create campus')
                     <li><a href="#">Create Campus</a></li>
-                @endcan
-                @can('view students')
+                @endcan --}}
+                {{-- @can('view students') --}}
                     <li class="divider"></li>
-                    <li><a href="#">Enrolled Students</a></li>
-                @endcan
+                    <li><a href="{{route('students.index')}}">Enrolled Students</a></li>
+                {{-- @endcan --}}
             </ul>
         </li>
     </ul>
