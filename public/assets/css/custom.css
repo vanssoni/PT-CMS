@@ -111,6 +111,16 @@ form a.btn.btn-warning.btn-icon-text.btn-xs i, form button.btn.btn-danger.btn-ic
 .ui-datepicker-title select:hover{
     cursor: pointer !important;
 }
-
+.multiselect-container.dropdown-menu > li > a > label{
+    width: 100% !important;
+}
+.select2-container--default .select2-selection--multiple{
+    height: 57px !important;
+}
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    
+    background-color: #fff !important;
+    padding: 12px 10px 12px !important;
+}
   
   

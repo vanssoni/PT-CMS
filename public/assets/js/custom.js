@@ -36,4 +36,9 @@ $(document).ready(function() {
         })
         return false;
     });
+    $('.multiselect').select2({
+        placeholder: "Select Below Options",
+        allowClear: true
+    });
+    
 });

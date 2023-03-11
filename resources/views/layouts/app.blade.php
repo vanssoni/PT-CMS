@@ -40,6 +40,8 @@
 
      <!-- Datatables CSS -->
      <link rel="stylesheet" type="text/css" href="/assets/js/plugins/datatables/media/css/dataTables.bootstrap.css">
+     <link rel="stylesheet" type="text/css" href="/assets/js/plugins/select2/css/core.css">
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="/assets/img/favicon.png">
 
@@ -131,6 +133,7 @@
     <script src="/assets/js/pages/dashboard1.js"></script>
     <script src="/assets/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
     <script src="/assets/js/sweetalert.js"></script>
+    <script src="/assets/js/plugins/select2/select2.min.js"></script>
     <script src="/assets/js/custom.js"></script>
     <script src="/assets/js/datepicker-custom.js"></script>
     <!-- /Scripts -->

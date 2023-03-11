@@ -97,4 +97,11 @@ class SubjectController extends Controller
         $subject->delete();
         return redirect()->route('subjects.index')->withSuccess('Subject deleted Successfully!');
     }
+    public function getCourseSubjects(Request $request){
+        $courses = $request->input('courses');
+        $subjects = [];
+        if($request->input('courses'))
+        $subjects = Subject::whereIn('course_id', $courses)->get();
+        return response()->json($subjects);
+    }
 }

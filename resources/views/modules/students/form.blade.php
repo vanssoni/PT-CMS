@@ -116,7 +116,12 @@
                 <label for="disabledInput" class="col-lg-3 control-label pt18">Status:</label>
         
                 <div class="col-lg-8">
-                    <input class="form-control" id="" type="text" placeholder="Status" value="{{@$student->status}}" name="status" required>
+                    <select id="status" name="status"  class="form-control" required>
+                        <option value="">Select an option</option>
+                        <option value="withdrawal" {{(@$student->status == 'withdrawal' ? 'selected' :'')}}>Withdrawal</option>
+                        <option value="enrolled" {{(@$student->status == 'enrolled' ? 'selected' :'')}}>Enrolled</option>
+                        <option value="graduated" {{(@$student->status == 'graduated' ? 'selected' :'')}}>Graduated</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-12 pt18">

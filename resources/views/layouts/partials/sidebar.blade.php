@@ -122,6 +122,29 @@
                     </ul>
                 </li>
             @endcan
+            @can('view instructors')
+                <li>
+                    <a class="accordion-toggle" href="{{route('instructors.index')}}">
+                        <span class="sidebar-title">Instructors</span>
+                        <span class="caret"></span>
+                        <span class="sb-menu-icon fa fa-group"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a href="{{route('instructors.index')}}">
+                                All Instructors 
+                            </a>
+                        </li>
+                        @can('create instructors')
+                            <li>
+                                <a href="{{route('instructors.create')}}">
+                                Create Instructor
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
             @can('view students')
                 <li>
                     <a class="accordion-toggle" href="{{route('students.index')}}">
