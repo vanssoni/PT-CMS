@@ -165,4 +165,13 @@ class StudentController extends Controller
         $student->delete();
         return redirect()->route('students.index')->withSuccess('Student deleted Successfully!');
     }
+    public function getCourseStudents(Request $request){
+        $courses = $request->input('courses');
+        $students = [];
+        if($request->input('courses'))
+        $students = Student::whereHas('courses', function($q) use($courses){
+            $q->whereIn('course_id', $courses);
+        })->where('status', 'enrolled')->get();
+        return response()->json($students);
+    }
 }

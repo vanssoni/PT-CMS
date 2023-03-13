@@ -204,4 +204,13 @@ class InstructorController extends Controller
         $instructor->delete();
         return redirect()->route('instructors.index')->withSuccess('Instructor deleted Successfully!');
     }
+    public function getCourseInstructors(Request $request){
+        $courses = $request->input('courses');
+        $instructors = [];
+        if($request->input('courses'))
+        $instructors = Instructor::whereHas('courses', function($q) use($courses){
+            $q->whereIn('course_id', $courses);
+        })->where('status', 'active')->get();
+        return response()->json($instructors);
+    }
 }

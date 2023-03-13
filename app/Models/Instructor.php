@@ -15,6 +15,7 @@ class Instructor extends Model
     ];
     protected $appends = [
         'courses_name',
+        'name'
     ];
 
     public function user(){
@@ -22,9 +23,12 @@ class Instructor extends Model
     }
 
     public function courses(){
+
         return $this->hasMany(InstructorCourse::class,'instructor_id', 'id');
     }
+
     public function subjects(){
+
         return $this->hasMany(InstructorSubject::class,'instructor_id', 'id');
     }
     
@@ -34,5 +38,9 @@ class Instructor extends Model
             $courseIds = $this->courses()->pluck('course_id')->toArray();
             return implode(',',Course::whereIn('id', $courseIds)->pluck('name')->toArray());
         }
+    }
+    public function getNameAttribute(){
+        if($this->user)
+        return $this->user->first_name.' '.$this->user->last_name;
     }
 }

@@ -37,8 +37,12 @@ Route::group(['middleware' => ['auth:web']], function() {
     Route::get('get-course-subjects', 'SubjectController@getCourseSubjects')->name('get-course-subjects');
     //instructors route
     Route::resource('instructors', InstructorController::class);
+    Route::get('get-course-instructors', 'InstructorController@getCourseInstructors')->name('get-course-instructors');
     //student routes
     Route::resource('students', StudentController::class);
+    Route::get('get-course-students', 'StudentController@getCourseStudents')->name('get-course-students');
+    //schedules routes
+    Route::resource('schedules', ScheduleController::class);
     //pdf form routes
     Route::resource('pdf-forms', PdfFormController::class);
 

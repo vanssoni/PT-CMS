@@ -15,6 +15,7 @@ class Student extends Model
     ];
     protected $appends = [
         'courses_name',
+        'name'
     ];
 
     public function user(){
@@ -44,5 +45,9 @@ class Student extends Model
     public function getRegistrationDateAttribute(){
         if(isset($this->attributes['registration_date']))
         return date('Y-m-d', strtotime($this->attributes['registration_date']));
+    }
+    public function getNameAttribute(){
+        if($this->user)
+        return $this->user->first_name.' '.$this->user->last_name;
     }
 }

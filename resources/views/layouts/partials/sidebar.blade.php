@@ -46,7 +46,7 @@
                         @can('create roles')
                             <li>
                                 <a href="{{route('roles.create')}}">
-                                    Create role 
+                                    Create Role 
                                 </a>
                             </li>
                         @endcan
@@ -86,7 +86,7 @@
                     <ul class="nav sub-nav">
                         <li>
                             <a href="{{route('courses.index')}}">
-                                All courses 
+                                All Courses 
                             </a>
                         </li>
                         @can('create courses')
@@ -109,7 +109,7 @@
                     <ul class="nav sub-nav">
                         <li>
                             <a href="{{route('subjects.index')}}">
-                                All subjects 
+                                All Subjects 
                             </a>
                         </li>
                         @can('create subjects')
@@ -155,13 +155,36 @@
                     <ul class="nav sub-nav">
                         <li>
                             <a href="{{route('students.index')}}">
-                                All students 
+                                All Students 
                             </a>
                         </li>
                         @can('create students')
                             <li>
                                 <a href="{{route('students.create')}}">
                                 Create Student
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </li>
+            @endcan
+            @can('view schedules')
+                <li>
+                    <a class="accordion-toggle" href="{{route('schedules.index')}}">
+                        <span class="sidebar-title">Schedules</span>
+                        <span class="caret"></span>
+                        <span class="sb-menu-icon fa fa-calendar"></span>
+                    </a>
+                    <ul class="nav sub-nav">
+                        <li>
+                            <a href="{{route('schedules.index')}}">
+                                All Schedules 
+                            </a>
+                        </li>
+                        @can('create schedules')
+                            <li>
+                                <a href="{{route('schedules.create')}}">
+                                Create Schedule
                                 </a>
                             </li>
                         @endcan
