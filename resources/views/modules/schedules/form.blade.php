@@ -27,7 +27,7 @@
                 </div>
             </div>
             
-            <div id="breaks"  {{(!@$schedule->breaks ? `style="display: none;"`: '')}} class="col-md-12 pt18">
+            <div id="breaks"  {{(!@$schedule->breaks ? "style=display:none;": '')}} class="col-md-12 pt18">
                 <div id="breaks-container" class="">
                     @if(@$schedule->breaks)
                         @foreach($schedule->breaks as $scheduleBreak)
