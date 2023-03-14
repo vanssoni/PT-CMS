@@ -191,6 +191,29 @@
                     </ul>
                 </li>
             @endcan
+            @can('view road tests')
+            <li>
+                <a class="accordion-toggle" href="{{route('road-tests.index')}}">
+                    <span class="sidebar-title">Road Tests</span>
+                    <span class="caret"></span>
+                    <span class="sb-menu-icon fa fa-flag-o"></span>
+                </a>
+                <ul class="nav sub-nav">
+                    <li>
+                        <a href="{{route('road-tests.index')}}">
+                            All Road Tests 
+                        </a>
+                    </li>
+                    @can('create road tests')
+                        <li>
+                            <a href="{{route('road-tests.create')}}">
+                            Create Road Test 
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
+            </li>
+        @endcan
 
             @can('view pdf forms')
                 <li>

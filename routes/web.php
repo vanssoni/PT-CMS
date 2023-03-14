@@ -43,6 +43,8 @@ Route::group(['middleware' => ['auth:web']], function() {
     Route::get('get-course-students', 'StudentController@getCourseStudents')->name('get-course-students');
     //schedules routes
     Route::resource('schedules', ScheduleController::class);
+    //road test routes
+    Route::resource('road-tests', RoadTestController::class);
     //pdf form routes
     Route::resource('pdf-forms', PdfFormController::class);
 

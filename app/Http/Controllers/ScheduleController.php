@@ -35,6 +35,7 @@ class ScheduleController extends Controller
             'description' => 'required',
             'from_time' => 'required',
             'to_time' => 'required',
+            'date' => 'required',
             'course_id' => 'required',
             'subject_id' => 'required',
             'instructor_id' => 'required',
@@ -118,6 +119,7 @@ class ScheduleController extends Controller
         $validator = Validator::make($request->all(), [
             'description' => 'required',
             'from_time' => 'required',
+            'date' => 'required',
             'to_time' => 'required',
             'course_id' => 'required',
             'subject_id' => 'required',
