@@ -24,27 +24,27 @@
 
         <!-- Sidebar Menu  -->
         <ul class="nav sidebar-menu">
-            <li class="active">
+            <li class="{{ isActiveRoute('/') }}">
                 <a href="/">
                     <span class="sidebar-title">Dashboards</span>
                     <span class="sb-menu-icon fa fa-home"></span>
                 </a>
             </li>
             @can('view roles')
-                <li>
-                    <a class="accordion-toggle" href="{{route('roles.index')}}">
+                <li class="">
+                    <a class="accordion-toggle {{isParentRoute('roles')}}">
                         <span class="sidebar-title">Roles</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa fa-group"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li class="{{ isActiveRoute('roles.index') }}">
                             <a href="{{route('roles.index')}}">
                                 All Roles 
                             </a>
                         </li>
                         @can('create roles')
-                            <li>
+                            <li class="{{ isActiveRoute('roles.create') }}">
                                 <a href="{{route('roles.create')}}">
                                     Create Role 
                                 </a>
@@ -55,19 +55,19 @@
             @endcan
             @can('view users')
                 <li>
-                    <a class="accordion-toggle" href="{{route('users.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('users')}}" href="{{route('users.index')}}">
                         <span class="sidebar-title">Users</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-user"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('roles.index') }}">
                             <a href="{{route('users.index')}}">
                                 All Users 
                             </a>
                         </li>
                         @can('create users')
-                            <li>
+                            <li  class="{{ isActiveRoute('roles.index') }}">
                                 <a href="{{route('users.create')}}">
                                     Create User 
                                 </a>
@@ -78,19 +78,19 @@
             @endcan
             @can('view courses')
                 <li>
-                    <a class="accordion-toggle" href="{{route('courses.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('courses')}} " href="{{route('courses.index')}}">
                         <span class="sidebar-title">Courses</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-book"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('courses.index') }}">
                             <a href="{{route('courses.index')}}">
                                 All Courses 
                             </a>
                         </li>
                         @can('create courses')
-                            <li>
+                            <li  class="{{ isActiveRoute('courses.create') }}">
                                 <a href="{{route('courses.create')}}">
                                     Create Course 
                                 </a>
@@ -101,19 +101,19 @@
             @endcan
             @can('view subjects')
                 <li>
-                    <a class="accordion-toggle" href="{{route('subjects.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('subjects')}} " href="{{route('subjects.index')}}">
                         <span class="sidebar-title">Subjects</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-file"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('subjects.index') }}">
                             <a href="{{route('subjects.index')}}">
                                 All Subjects 
                             </a>
                         </li>
                         @can('create subjects')
-                            <li>
+                            <li  class="{{ isActiveRoute('subjects.create') }}">
                                 <a href="{{route('subjects.create')}}">
                                 Create Subject
                                 </a>
@@ -124,19 +124,19 @@
             @endcan
             @can('view instructors')
                 <li>
-                    <a class="accordion-toggle" href="{{route('instructors.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('instructors')}}" href="{{route('instructors.index')}}">
                         <span class="sidebar-title">Instructors</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-group"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('instructors.index') }}">
                             <a href="{{route('instructors.index')}}">
                                 All Instructors 
                             </a>
                         </li>
                         @can('create instructors')
-                            <li>
+                            <li  class="{{ isActiveRoute('instructors.create') }}">
                                 <a href="{{route('instructors.create')}}">
                                 Create Instructor
                                 </a>
@@ -147,19 +147,19 @@
             @endcan
             @can('view students')
                 <li>
-                    <a class="accordion-toggle" href="{{route('students.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('students')}}" href="{{route('students.index')}}">
                         <span class="sidebar-title">Students</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-group"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('students.index') }}">
                             <a href="{{route('students.index')}}">
                                 All Students 
                             </a>
                         </li>
                         @can('create students')
-                            <li>
+                            <li  class="{{ isActiveRoute('students.create') }}">
                                 <a href="{{route('students.create')}}">
                                 Create Student
                                 </a>
@@ -170,19 +170,19 @@
             @endcan
             @can('view schedules')
                 <li>
-                    <a class="accordion-toggle" href="{{route('schedules.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('schedules')}}" href="{{route('schedules.index')}}">
                         <span class="sidebar-title">Schedules</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-calendar"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('schedules.index') }}">
                             <a href="{{route('schedules.index')}}">
                                 All Schedules 
                             </a>
                         </li>
                         @can('create schedules')
-                            <li>
+                            <li  class="{{ isActiveRoute('schedules.create') }}">
                                 <a href="{{route('schedules.create')}}">
                                 Create Schedule
                                 </a>
@@ -193,19 +193,19 @@
             @endcan
             @can('view road tests')
             <li>
-                <a class="accordion-toggle" href="{{route('road-tests.index')}}">
+                <a class="accordion-toggle {{isParentRoute('road-tests')}}" href="{{route('road-tests.index')}}">
                     <span class="sidebar-title">Road Tests</span>
                     <span class="caret"></span>
                     <span class="sb-menu-icon fa fa-flag-o"></span>
                 </a>
                 <ul class="nav sub-nav">
-                    <li>
+                    <li  class="{{ isActiveRoute('road-tests.index') }}">
                         <a href="{{route('road-tests.index')}}">
                             All Road Tests 
                         </a>
                     </li>
                     @can('create road tests')
-                        <li>
+                        <li  class="{{ isActiveRoute('road-tests.create') }}">
                             <a href="{{route('road-tests.create')}}">
                             Create Road Test 
                             </a>
@@ -217,19 +217,19 @@
 
             @can('view pdf forms')
                 <li>
-                    <a class="accordion-toggle" href="{{route('pdf-forms.index')}}">
+                    <a class="accordion-toggle {{isParentRoute('pdf-forms')}}" href="{{route('pdf-forms.index')}}">
                         <span class="sidebar-title">Pdf Forms</span>
                         <span class="caret"></span>
                         <span class="sb-menu-icon fa fa-file"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li>
+                        <li  class="{{ isActiveRoute('pdf-forms.index') }}">
                             <a href="{{route('pdf-forms.index')}}">
                                 All Pdf Forms 
                             </a>
                         </li>
                         @can('create courses')
-                            <li>
+                            <li  class="{{ isActiveRoute('pdf-forms.create') }}">
                                 <a href="{{route('pdf-forms.create')}}">
                                     Upload Pdf form 
                                 </a>

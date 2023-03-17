@@ -14,6 +14,9 @@ class Schedule extends Model
         'created_at',
         'updated_at',
     ];
+    public $appends = [
+        'minutes',
+    ];
 
     public function course(){
         
@@ -35,6 +38,14 @@ class Schedule extends Model
     public function breaks(){
 
         return $this->hasMany(ScheduleBreak::class,'schedule_id', 'id');
+    }
+    public function getMinutesAttribute(){
+        if(isset($this->attributes['from_time']) && isset($this->attributes['to_time'])){
+            $fromDate = \Carbon\Carbon::parse($this->attributes['from_time']);
+            $toDate =  \Carbon\Carbon::parse($this->attributes['to_time']);
+            // Calculate the difference in minutes
+            return $toDate->diffInMinutes($fromDate);
+        }
     }
     
 }

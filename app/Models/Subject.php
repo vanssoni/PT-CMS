@@ -13,7 +13,16 @@ class Subject extends Model
         'created_at',
         'updated_at',
     ];
+    public $appends = [
+        'minutes',
+    ];
     public function course(){
         return $this->hasOne(Course::class, 'id', 'course_id');
+    }
+    public function getMinutesAttribute(){
+        if(isset($this->attributes['hours']) ){
+            // Calculate the difference in minutes
+            return $this->attributes['hours']*60;
+        }
     }
 }

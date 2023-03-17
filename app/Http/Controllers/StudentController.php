@@ -89,12 +89,12 @@ class StudentController extends Controller
         return redirect()->route('students.index')->withSuccess('Student Created Successfully!');
     }
 
-    public function view(Request $request, $id){
+    public function show(Request $request, $id){
         //authorize the action
         $this->authorize('view students', \Auth::user());
 
-        $student = Student::find($id);
-        return view('modules.students.view', compact('user'));
+        $student = Student::with(['user', 'courses','road_tests'])->find($id);
+        return view('modules.students.view', compact('student'));
     }
 
     public function edit(Request $request, $id){

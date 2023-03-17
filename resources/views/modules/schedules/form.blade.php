@@ -75,7 +75,7 @@
                 <div class="form-group">
                     <label for="disabledInput" class="floating-label control-label">Students:</label>
                 
-                    <select id="students" name="students[]" required class="form-control multiselect" multiselect>
+                    <select id="students" name="students[]" required class="form-control multiselect" multiple>
                         
                     </select>
                 </div>           

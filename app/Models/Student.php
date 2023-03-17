@@ -25,6 +25,9 @@ class Student extends Model
     public function courses(){
         return $this->hasMany(StudentCourse::class,'student_id', 'id');
     }
+    public function road_tests(){
+        return $this->hasMany(RoadTest::class,'student_id', 'id');
+    }
     
     public function  getCoursesNameAttribute(){
         if(isset($this->courses)){
@@ -42,6 +45,7 @@ class Student extends Model
         if(isset($this->attributes['expiry']))
         return date('Y-m-d', strtotime($this->attributes['expiry']));
     }
+
     public function getRegistrationDateAttribute(){
         if(isset($this->attributes['registration_date']))
         return date('Y-m-d', strtotime($this->attributes['registration_date']));

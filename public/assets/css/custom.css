@@ -125,5 +125,13 @@ form a.btn.btn-warning.btn-icon-text.btn-xs i, form button.btn.btn-danger.btn-ic
 .add_break_button{
     margin-top: 10px !important;
 }
+.progress {
+    background-color: #3c303021 !important;
+    height: 40px;
+}
+.progress-bar{
+
+    padding-top: 10px;
+}
   
   

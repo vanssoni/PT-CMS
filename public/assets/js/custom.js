@@ -40,5 +40,5 @@ $(document).ready(function() {
         placeholder: "Select Below Options",
         allowClear: true
     });
-    
+
 });
