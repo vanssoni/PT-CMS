@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en" data-topbar-color="dark">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,128 +14,86 @@
     <meta name="author" content="ThemeREX">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico">
+     <!-- third party css -->
+     <link href="/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+     <link href="/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css" rel="stylesheet" type="text/css" />
+     <link href="/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+     <link href="/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Icomoon -->
-    {{-- <link rel="stylesheet" type="text/css" href="/assets/fonts/icomoon/icomoon.css"> --}}
 
-    <!-- FullCalendar -->
-    <link rel="stylesheet" type="text/css" href="/assets/js/plugins/fullcalendar/fullcalendar.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/js/plugins/magnific/magnific-popup.css">
 
-    <!-- Plugins -->
-    <link rel="stylesheet" type="text/css" href="/assets/js/plugins/c3charts/c3.min.css">
-    <link rel="stylesheet" type="text/css" href="/assets/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min.css">
+     <!-- third party css end -->
+    <!-- Plugins css -->
+    <link href="/assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
 
-    <!-- CSS - theme -->
-    <!-- <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/css/theme.css"> -->
-    <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/less/theme.min.css">
+    <!-- Theme Config Js -->
+    <script src="/assets/js/head.js"></script>
 
-    <!-- CSS - allcp forms -->
-    <link rel="stylesheet" type="text/css" href="/assets/allcp/forms/css/forms.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/custom.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/sweetalert.css">
+    <!-- Bootstrap css -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="app-style" />
 
-     <!-- Datatables CSS -->
-     <link rel="stylesheet" type="text/css" href="/assets/js/plugins/datatables/media/css/dataTables.bootstrap.css">
-     <link rel="stylesheet" type="text/css" href="/assets/js/plugins/select2/css/core.css">
+    <!-- App css -->
+    <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="/assets/img/favicon.png">
+    <!-- Icons css -->
+    <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="/assets/css/custom.css" rel="stylesheet" type="text/css" />
 
     <!-- Scripts -->
    
 </head>
-<body class="dashboard-page with-customizer">
+<body>
     <!-- Body Wrap  -->
-    <div id="main">
-        <!-- Header  -->
-        @include('layouts.partials.header')
-        <!-- /Header  -->
-        <!-- Sidebar  -->
+    <div id="wrapper">
+        <!-- ========== Menu ========== -->
         @include('layouts.partials.sidebar')
-        <!-- /Sidebar  -->
-         <!-- Main Wrapper -->
-        <section id="content_wrapper">
-            <!-- Topbar -->
-            <header id="topbar" class="alt">
-                <div class="topbar-left">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-icon">
-                            <a href="/">
-                                <span class="fa fa-home"></span>
-                            </a>
-                        </li>
-                        <li class="breadcrumb-link">
-                            <a href="/">Home</a>
-                        </li>
-                        <li class="breadcrumb-current-item">Dashboard</li>
-                    </ol>
+        <!-- ========== Left menu End ========== -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- ========== Topbar Start ========== -->
+            @include('layouts.partials.header')
+            <!-- ========== Topbar End ========== -->
+            <div class="content">
+                <!-- Start Content-->
+                <div class="container-fluid">
+                    @yield('content')
                 </div>
-            </header>
-            <!-- /Topbar -->
-            <!-- Content -->
-            <section id="content" class="table-layout animated fadeIn">
-                @yield('content')
-            </section>
-             <!-- /Content -->
-            <!-- Page Footer -->
-            <footer id="content-footer">
-                @include('layouts.partials.footer')
-            </footer>
-            <!-- /Page Footer -->
-        </section>
+            </div>
+        </div>
+        <!-- Page Footer -->
+            @include('layouts.partials.footer')
+        <!-- /Page Footer -->
     </div>
     <!-- /Body Wrap  -->
+    <!-- Vendor js -->
+    <script src="/assets/js/vendor.min.js"></script>
 
-    <!-- Scripts -->
-    
-    <!-- jQuery -->
-    {{-- <script src="/assets/js/jquery/jquery-1.11.3.min.js"></script> --}}
-    <script src="/assets/js/jquery/jquery-2.2.min.js"></script>
-    <script src="/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
-    <!-- <script src="/assets/js/utility/fullscreen/jquery.fullscreen.js"></script> -->
+    <script src="/assets/js/jquery.js"></script>
+    <!-- App js -->
+    <script src="/assets/js/app.min.js"></script>
 
-    <!-- HighCharts Plugin -->
-    <script src="/assets/js/plugins/highcharts/highcharts.js"></script>
-    <script src="/assets/js/plugins/c3charts/d3.min.js"></script>
-    <script src="/assets/js/plugins/c3charts/c3.min.js"></script>
-
-    <!-- Simple Circles Plugin -->
-    <script src="/assets/js/plugins/circles/circles.js"></script>
-
-    <!-- Maps JSs -->
-    <script src="/assets/js/plugins/jvectormap/jquery.jvectormap.min.js"></script>
-    <script src="/assets/js/plugins/jvectormap//assets/jquery-jvectormap-us-lcc-en.js"></script>
-
-    <!-- FullCalendar Plugin -->
-    <script src="/assets/js/plugins/fullcalendar/lib/moment.min.js"></script>
-    <script src="/assets/js/plugins/fullcalendar/fullcalendar.min.js"></script>
-    
-    <!-- Date/Month - Pickers -->
-    <script src="/assets/allcp/forms/js/jquery-ui-monthpicker.min.js"></script>
-    <script src="/assets/allcp/forms/js/jquery-ui-datepicker.min.js"></script>
-
-    <!-- Magnific Popup Plugin -->
-    <script src="/assets/js/plugins/magnific/jquery.magnific-popup.js"></script>
-
-    <!-- Theme Scripts -->
-    <script src="/assets/js/utility/utility.js"></script>
-    <script src="/assets/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="/assets/js/demo/demo.js"></script>
-    <script src="/assets/js/main.js"></script>
-
-    <!-- Widget JS -->
-    <script src="/assets/js/demo/widgets.js"></script>
-    <script src="/assets/js/demo/widgets_sidebar.js"></script>
-    <script src="/assets/js/pages/dashboard1.js"></script>
-    <script src="/assets/js/plugins/datatables/media/js/jquery.dataTables.js"></script>
-    <script src="/assets/js/sweetalert.js"></script>
-    <script src="/assets/js/plugins/select2/select2.min.js"></script>
-    <script src="/assets/js/custom.js"></script>
+    <!-- Plugins js-->
+    <script src="/assets/libs/flatpickr/flatpickr.min.js"></script>
+    <script src="/assets/libs/apexcharts/apexcharts.min.js"></script>
+    <script src="/assets/libs/selectize/js/standalone/selectize.min.js"></script>
+    <script src="/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <!-- third party js -->
+    <script src="/assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="/assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/assets/libs/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js"></script>
+    <!-- third party js ends -->
+    <!-- Dashboar 1 init js-->
+    <script src="/assets/js/pages/dashboard-1.init.js"></script>
+    <script src="/assets/libs/sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="/assets/libs/select2/js/select2.min.js"></script>
     <script src="/assets/js/datepicker-custom.js"></script>
+    <script src="/assets/js/custom.js"></script>
     <!-- /Scripts -->
     @include('layouts.partials.alerts')
     @stack('scripts')

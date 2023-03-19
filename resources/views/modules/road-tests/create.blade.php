@@ -1,24 +1,35 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="chute chute-center ph45">
-        <!-- Spec Form -->
-        <div class="allcp-form">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">Create New Road Test
-                    </div>
-                </div>
-                <div class="panel-body">
+ <!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box">
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item active">Create Road Tests</li>
+                </ol>
+            </div>
+            <h4 class="page-title"> Create Road Tests</h4>
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="header-title mb-4">Create Road Tests</h4>
                 {!! Form::open(['route' => 'road-tests.store', 'class' => 'forms-sample','files'  => true,]) !!}
                     @include('modules.road-tests.form')
-                    {!! Form::submit('Create', ['class' => 'btn btn-primary ml-2']) !!}
+                    {!! Form::submit('Create', ['class' => 'btn btn-primary mt-2']) !!}
                 {!! Form::close() !!}
-                </div>
             </div>
-
         </div>
-        <!-- /Column Center -->
+
     </div>
+        <!-- /Column Center -->
+</div>
 @endsection
               

@@ -1,161 +1,119 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <!-- Meta and Title -->
-    <meta charset="utf-8">
-    <title>Login|Regsiter</title>
-    <meta name="keywords" content="HTML5, Bootstrap 3, Admin Template, UI Theme"/>
-    <meta name="description" content="Alliance - A Responsive HTML5 Admin UI Framework">
-    <meta name="author" content="ThemeREX">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="utf-8" />
+        <title>Log In</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
 
-    <!-- Fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,300,300italic,400italic,500,500italic,700,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700' rel='stylesheet' type='text/css'>
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="/assets/images/favicon.ico">
 
-    <!-- CSS - theme -->
-    <link rel="stylesheet" type="text/css" href="/assets/skin/default_skin/less/theme.min_2.css">
+        <!-- Theme Config Js -->
+        <script src="assets/js/head.js"></script>
 
-    <!-- CSS - allcp forms -->
-    <link rel="stylesheet" type="text/css" href="/assets/allcp/forms/css/forms_2.css">
+        <!-- Bootstrap css -->
+        <link href="/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="app-style" />
 
-    <!-- Favicon -->
-    <link rel="shortcut icon" href="/assets/img/favicon_2.png">
+        <!-- App css -->
+        <link href="/assets/css/app.min.css" rel="stylesheet" type="text/css" />
 
-    <!-- Plugins -->
-    <link rel="stylesheet" type="text/css" href="/assets/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.min_2.css">
+        <!-- Icons css -->
+        <link href="/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    </head>
 
-    <!-- IE8 HTML5 support -->
-</head>
+    <body class="authentication-bg authentication-bg-pattern">
+        <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-4">
+                        <div class="card bg-pattern">
 
-<body class="utility-page sb-l-c sb-r-c">
-
-<!-- Body Wrap -->
-<div id="main" class="animated fadeIn">
-
-    <!-- Main Wrapper -->
-    <section id="content_wrapper">
-
-        <div id="canvas-wrapper">
-            <canvas id="demo-canvas"></canvas>
-        </div>
-
-        <!-- Content -->
-        <section id="content">
-
-            <!-- Login Form -->
-            <div class="allcp-form theme-primary mw320" id="login">
-                <div class="bg-primary mw600 text-center mb20 br3 pt15 pb10">
-                    <img src="/assets/img/logo_2.png" alt=""/>
-                </div>
-                <div class="panel mw320">
-
-                    <form method="post" action="{{ route('login') }}" id="form-login">
-                        @csrf
-                        <div class="panel-body pn mv10">
-
-                            <div class="section">
-                                <label for="email" class="field prepend-icon">
-                                    <input type="text" name="email" id="email" class="gui-input"
-                                           placeholder="Email or Username">
-                                    <span class="field-icon">
-                                        <i class="fa fa-user"></i>
-                                    </span>
-                                </label>
-                                @error('email')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <!-- /section -->
-
-                            <div class="section">
-                                <label for="password" class="field prepend-icon">
-                                    <input type="password" name="password" id="password" class="gui-input"
-                                           placeholder="Password">
-                                    <span class="field-icon">
-                                        <i class="fa fa-lock"></i>
-                                    </span>
-                                </label>
-                                @error('password')
-                                    <span class="text-danger" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <!-- /section -->
-
-                            <div class="section">
-                                <div class="bs-component pull-left pt5">
-                                    <div class="radio-custom radio-primary mb5 lh25">
-                                        <input type="radio" id="remember" name="remember">
-                                        <label for="remember">Remember me</label>
+                            <div class="card-body p-4">
+                                
+                                <div class="text-center w-75 m-auto">
+                                    <div class="auth-brand">
+                                        <a href="/" class="logo logo-dark text-center">
+                                            <span class="logo-lg">
+                                                <img src="assets/images/logo-dark.png" alt="" height="22">
+                                            </span>
+                                            
+                                        </a>
+                    
+                                        <a href="/" class="logo logo-light text-center">
+                                            <span class="logo-lg">
+                                                <img src="assets/images/logo-light.png" alt="" height="22">
+                                            </span>
+                                            
+                                        </a>
                                     </div>
+                                    <p class="text-muted mb-4 mt-3">Enter your email address/username and password to access panel.</p>
                                 </div>
-                                <button type="submit" class="btn btn-bordered btn-primary pull-right">Log in</button>
-                            </div>
-                            <!-- /section -->
 
+                                <form action="{{ route('login') }}" method="post">
+                                    @csrf
+                                    <div class="mb-3">
+                                        <label for="emailaddress" class="form-label">Email address</label>
+                                        <input class="form-control" type="test" id="emailaddress" required="" placeholder="Enter your email or username" name="email">
+                                        @error('email')
+                                            <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password" class="form-control" placeholder="Enter your password" name="password">
+                                            <div class="input-group-text" data-password="false">
+                                                <span class="password-eye"></span>
+                                            </div>
+                                        </div>
+                                        @error('password')
+                                            <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="checkbox-signin" checked>
+                                            <label class="form-check-label" for="checkbox-signin">Remember me</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="text-center d-grid">
+                                        <button class="btn btn-primary" type="submit"> Log In </button>
+                                    </div>
+
+                                </form>
+
+                            </div> <!-- end card-body -->
                         </div>
-                        <!-- /Form -->
-                    </form>
+                        <!-- end card -->
+
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                {{-- <p> <a href="auth-recoverpw.html" class="text-white-50 ms-1">Forgot your password?</a></p> --}}
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
                 </div>
-                <!-- /Panel -->
+                <!-- end row -->
             </div>
-            <!-- /Spec Form -->
+            <!-- end container -->
+        </div>
+        <!-- Authentication js -->
+        <script src="assets/js/jquery.js"></script>
+        <script src="assets/js/pages/authentication.init.js"></script>
 
-        </section>
-        <!-- /Content -->
-
-    </section>
-    <!-- /Main Wrapper -->
-
-</div>
-<!-- /Body Wrap  -->
-
-<!-- Scripts -->
-
-<!-- jQuery -->
-<script src="/assets/js/jquery/jquery-1.11.3.min.js"></script>
-<script src="/assets/js/jquery/jquery_ui/jquery-ui.min.js"></script>
-
-<!-- CanvasBG JS -->
-<script src="/assets/js/plugins/canvasbg/canvasbg.js"></script>
-
-<!-- Theme Scripts -->
-<!-- <script src="/assets/js/utility/utility.js"></script> -->
-<script src="/assets/js/utility/malihu-custom-scrollbar-plugin-master/jquery.mCustomScrollbar.concat.min.js"></script>
-<script src="/assets/js/demo/demo.js"></script>
-<script src="/assets/js/main.js"></script>
-
-<!-- Page JS -->
-<script type="text/javascript">
-    jQuery(document).ready(function () {
-
-        "use strict";
-
-        // Init Theme Core
-        Core.init();
-
-        // Init Demo JS
-        Demo.init();
-
-        // Init CanvasBG
-        CanvasBG.init({
-            Loc: {
-                x: window.innerWidth / 5,
-                y: window.innerHeight / 10
-            }
-        });
-
-    });
-</script>
-
-<!-- /Scripts -->
-
-</body>
+    </body>
 
 </html>
 

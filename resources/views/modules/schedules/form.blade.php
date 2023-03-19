@@ -2,32 +2,32 @@
 <div class="row">
     <div class="col-md-6">
         <div class="row mb10">
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="description" class="floating-label control-label">Description:</label>
                         <input class="form-control" id="" type="text" placeholder="Description" name="description" value="{{@$schedule->description}}" required>
                 </div>
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="date" class="floating-label control-label">Date:</label>
                         <input class="form-control datepicker-default" id="date" type="text" placeholder="Date" name="date" value="{{@$schedule->date}}" required>
                 </div>
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="date" class="floating-label control-label">From Time:</label>
                         <input class="form-control " id="from_time" type="time" placeholder="From Time" name="from_time" value="{{@$schedule->from_time}}" required  onchange="checkTimeInputs()">
                 </div>
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="date" class="floating-label control-label">To Time:</label>
                         <input class="form-control" id="to_time" type="time" placeholder="To Time" name="to_time" value="{{@$schedule->to_time}}" required  onchange="checkTimeInputs()">
                 </div>
             </div>
             
-            <div id="breaks"  {{(!@$schedule->breaks ? "style=display:none;": '')}} class="col-md-12 pt18">
+            <div id="breaks"  {{(!@$schedule->breaks ? "style=display:none;": '')}} class="col-md-12 mt-3">
                 <div id="breaks-container" class="">
                     @if(@$schedule->breaks)
                         @foreach($schedule->breaks as $scheduleBreak)
@@ -48,9 +48,9 @@
                         @endforeach
                     @endif
                 </div>
-                <button type="button" onclick="addBreakTime()" class="btn btn-primary pt18 add_break_button">Add Break Time</button>
+                <button type="button" onclick="addBreakTime()" class="btn btn-primary mt-2 add_break_button">Add Break Time</button>
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="disabledInput" class="floating-label control-label">Course:</label>
                 
@@ -62,7 +62,7 @@
                     </select>
                 </div>             
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="disabledInput" class="floating-label control-label">Subject:</label>
                 
@@ -71,7 +71,7 @@
                     </select>
                 </div>           
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="disabledInput" class="floating-label control-label">Students:</label>
                 
@@ -80,7 +80,7 @@
                     </select>
                 </div>           
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-3">
                 <div class="form-group">
                     <label for="disabledInput" class="floating-label control-label">Instructor:</label>
                 
@@ -109,7 +109,7 @@
         $("#image").change(function(){
             readURL(this);
         });
-    $(document).on('ready', function(){
+    $(function() {
         function getCourseSubjects(courses){
 
             $('#subject').empty();
@@ -266,6 +266,7 @@
         newBreakTimeInputs.setAttribute("class", `breaks`);
 
         newBreakTimeInputs.innerHTML = `
+        <div class= 'row'>
             <div class="col-md-5 ">
                 <label for="breaks_from_time_${breakIndex}">Break From:</label>
                 <input type="time" id="breaks_from_time_${breakIndex}" onchange="checkTimeInputs()"  name="breaks[${breakIndex}][from_time]"  class='form-control' required>
@@ -278,6 +279,7 @@
                 <label for="">Action</label>
                 <button type="button" onclick="removeBreakTime(${breakIndex})" class='form-control btn btn-danger'><span class="fa fa fa-trash"></span></button>
             </div>
+        </div>
         `;
 
         breaksContainer.appendChild(newBreakTimeInputs);

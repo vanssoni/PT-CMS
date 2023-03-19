@@ -2,19 +2,16 @@
 
 @section('content')
     <!-- Column Center -->
-        <div class="chute chute-center ph45">
-
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title text-center">{{@$student->name}}'s Details
-                    </div>
-                </div>
-                <div class="panel-body">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4 text-center">{{@$student->name}}'s Details</h4>
                    <div class="row">
                         <div class="col-md-4">
                             <center>
                                 <div class="user-profile">
-                                    <img src="{{@$student->user->profile_pic ?? url('/assets/img/avatars/profile_avatar.jpg')}}"  class="img-responsive" alt="Profile Picture" id="image-preview">
+                                    <img src="{{@$student->user->profile_pic ?? url('/assets/img/avatars/profile_avatar.jpg')}}" alt="image" class="img-fluid avatar-xl rounded" id="image-preview">
                                 </br>
                                 @can('edit students')
                                 <a class="btn btn-warning btn-icon-text btn-xs" href="{{ route('students.edit', $student->id) }}">
@@ -23,15 +20,15 @@
                                 @endcan
                                 <h5>{{@$student->name}}</h5> 
                                 @if(@$student->status == 'withdraw')
-                                <span class="badge badge-info">Withdraw</span>
+                                    <span class="badge bg-info">Withdraw</span>
                                 @endif
 
                                 @if(@$student->status == 'enrolled')
-                                    <span class="badge badge-primary">Enrolled</span>
+                                    <span class="badge bg-primary">Enrolled</span>
                                 @endif
 
                                 @if(@$student->status == 'graduated')
-                                    <span class="badge badge-success">Graduated</span>
+                                    <span class="badge bg-success">Graduated</span>
                                 @endif
                                 <p>{{ $student->address }}</p>
                                 </div>
@@ -45,15 +42,15 @@
                                     <th>Student Status</th>
                                     <td>
                                         @if(@$student->status == 'withdraw')
-                                        <span class="badge badge-info">Withdraw</span>
+                                        <span class="badge bg-info">Withdraw</span>
                                         @endif
 
                                         @if(@$student->status == 'enrolled')
-                                            <span class="badge badge-primary">Enrolled</span>
+                                            <span class="badge bg-primary">Enrolled</span>
                                         @endif
 
                                         @if(@$student->status == 'graduated')
-                                            <span class="badge badge-success">Graduated</span>
+                                            <span class="badge bg-success">Graduated</span>
                                         @endif
                                     </td>
                                 </tr>
@@ -177,6 +174,7 @@
                    </div>
                 </div>
             </div>
+        </div>
     </div>
     <!-- /Column Center -->
 @endsection

@@ -28,13 +28,7 @@ class InstructorController extends Controller
         //authorize the action
         $this->authorize('create instructors', \Auth::user());
         $courses = Course::pluck('id', 'name')->toArray();
-        $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
-        ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
-        ->get()->groupBy('group')->map(function($items) {
-            return $items->pluck('name');
-        })
-        ->toArray();
-        return view('modules.instructors.create', compact('courses', 'permissions'));
+        return view('modules.instructors.create', compact('courses'));
     }
 
     public function store(Request $request){
@@ -44,7 +38,6 @@ class InstructorController extends Controller
             'first_name' => 'required',
             'courses' => 'required',
             'subjects' => 'required',
-            'permissions' => 'required',
             'email' => 'email|required|unique:users',
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username",
             'password' => 'required',
@@ -76,8 +69,6 @@ class InstructorController extends Controller
         $user->save();
         // assign the role
         $user->assignRole('instructor');
-        //give permissions
-        $user->givePermissionTo($request->permissions);
         $request['user_id'] = $user->id;
         try{
             $instructor =  Instructor::create($request->except(['_token', 'username', 'password', 'email','first_name', 'last_name', 'courses', 'subjects', 'profile_pic','permissions']));
@@ -122,13 +113,8 @@ class InstructorController extends Controller
         $this->authorize('edit instructors', \Auth::user());
         $courses = Course::pluck('id', 'name')->toArray();
         $instructor = Instructor::find($id);
-        $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
-        ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
-        ->get()->groupBy('group')->map(function($items) {
-            return $items->pluck('name');
-        })
-        ->toArray();
-        return view('modules.instructors.edit', compact('instructor', 'courses', 'permissions'));
+       
+        return view('modules.instructors.edit', compact('instructor', 'courses'));
     }
 
     public function update(Request $request, $id){
@@ -140,7 +126,6 @@ class InstructorController extends Controller
             'first_name' => 'required',
             'courses' => 'required',
             'subjects' => 'required',
-            'permissions' => 'required',
             'email' => "email|required|unique:users,email,$instructor->user_id",
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username,$instructor->user_id",
             'password' => 'required',
@@ -171,8 +156,6 @@ class InstructorController extends Controller
             $request->profile_pic->move(storage_path('app/public/users/'), $image_name);
             $user->profile_pic = $image_name;
         }
-        //give permissiom 
-        $user->syncPermissions($request->permissions);
         $user->save();
         $instructor->courses()->delete();
         $instructor->subjects()->delete();

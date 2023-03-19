@@ -20,7 +20,7 @@ function getStatusBadge($status) {
             break;
     }
 
-    $badge = '<span class="badge badge-' . $class . '">' . ucfirst($status) . '</span>';
+    $badge = '<span class="badge bg-' . $class . '">' . ucfirst($status) . '</span>';
 
     return $badge;
 }
@@ -59,18 +59,18 @@ function getStudentSechules($student_id){
 function getProgressBarColor($percentage){
 
    if($percentage>=100){
-    return 'progress-bar-success';
+    return 'progress-bar-striped bg-success';
    }
    if($percentage >=80){
-    return 'progress-bar-primary';
+    return 'progress-bar-striped bg-primary';
    }
    if($percentage >=70){
-    return ' progress-bar-info';
+    return 'progress-bar-striped bg-info';
    }
    if($percentage >=50){
-    return 'progress-bar-alert';
+    return 'progress-bar-striped bg-alert';
    }
-   return 'progress-bar-danger';
+   return 'progress-bar-striped bg-danger';
 }
 function isActiveRoute($routeName) {
     return Route::currentRouteName() == $routeName ? 'active' : '';

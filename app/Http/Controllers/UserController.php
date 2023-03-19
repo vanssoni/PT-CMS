@@ -56,14 +56,8 @@ class UserController extends Controller
     public function create(Request $request){
         //authorize the action
         $this->authorize('create users', \Auth::user());
-        $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
-                ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
-                ->get()->groupBy('group')->map(function($items) {
-                    return $items->pluck('name');
-                })
-                ->toArray();
         $roles = Role::whereNotIn('name', ['admin', 'student', 'instructor'])->orderBy('name', 'ASC')->get();
-        return view('modules.users.create', compact('permissions', 'roles'));
+        return view('modules.users.create', compact('roles'));
     }
 
     public function store(Request $request){
@@ -74,7 +68,6 @@ class UserController extends Controller
             'first_name' => 'required',
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username",
             'password' => 'required|min:6',
-            'permissions' => 'required',
             'role' => 'required',
         ]);
         if ($validator->fails()) {
@@ -93,8 +86,7 @@ class UserController extends Controller
             $user->profile_pic = $image_name;
         }
         $user->save();
-        //give permissiom and assign the role
-        $user->givePermissionTo($request->permissions);
+        //assign role
         $user->assignRole($request->role);
         return redirect()->route('users.index')->withSuccess('User Created Successfully!');
     }
@@ -112,14 +104,8 @@ class UserController extends Controller
         $this->authorize('edit users', \Auth::user());
 
         $user = User::find($id);
-        $permissions = Permission::select('group', 'name')->orderByRaw("SUBSTRING_INDEX(name, ' ', -1) ASC")
-                ->orderByRaw("SUBSTRING_INDEX(name, ' ', -2) ASC")
-                ->get()->groupBy('group')->map(function($items) {
-                    return $items->pluck('name');
-                })
-                ->toArray();
         $roles = Role::whereNotIn('name', ['admin', 'student', 'instructor'])->orderBy('name', 'ASC')->get();
-        return view('modules.users.edit', compact('user', 'permissions', 'roles'));
+        return view('modules.users.edit', compact('user','roles'));
     }
 
     public function update(Request $request, $id){
@@ -130,7 +116,6 @@ class UserController extends Controller
             'first_name' => 'required',
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username,$id",
             'password' => 'required|min:6',
-            'permissions' => 'required',
             'role' => 'required',
         ]);
  
@@ -148,8 +133,6 @@ class UserController extends Controller
             $request->profile_pic->move(storage_path('app/public/users/'), $image_name);
             $user->profile_pic = $image_name;
         }
-        //give permissiom and assign the role
-        $user->syncPermissions($request->permissions);
         $user->syncRoles($request->role);
         $user->save();
         return redirect()->route('users.index')->withSuccess('User Updated Successfully!');

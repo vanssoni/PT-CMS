@@ -1,199 +1,305 @@
- <header class="navbar navbar-fixed-top">
-    <div class="navbar-logo-wrapper dark bg-dark">
-        <a class="navbar-logo-image" href="/">
-            <img src="/assets/img/logo.png" alt="" class="sb-l-o-logo">
-            <img src="/assets/img/logo_small.png" alt="" class="sb-l-m-logo">
-        </a>
-    </div>
-    <span id="sidebar_left_toggle" class="ad ad-lines navbar-nav navbar-left"></span>
-    <form class="navbar-form navbar-left search-form square" role="search">
-        <div class="input-group add-on">
+<div class="navbar-custom">
+    <div class="topbar">
+        <div class="topbar-menu d-flex align-items-center gap-1">
 
-            <input type="text" class="form-control" placeholder="Search" onfocus="this.placeholder=''"
-                   onblur="this.placeholder='Search'">
+            <!-- Topbar Brand Logo -->
+            <div class="logo-box">
+                <!-- Brand Logo Light -->
+                <a href="index.html" class="logo-light">
+                    <img src="/assets/images/logo-light.png" alt="logo" class="logo-lg">
+                    <img src="/assets/images/logo-sm.png" alt="small logo" class="logo-sm">
+                </a>
 
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                <!-- Brand Logo Dark -->
+                <a href="index.html" class="logo-dark">
+                    <img src="/assets/images/logo-dark.png" alt="dark logo" class="logo-lg">
+                    <img src="/assets/images/logo-sm.png" alt="small logo" class="logo-sm">
+                </a>
             </div>
 
-        </div>
-    </form>
-    <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown dropdown-fuse hidden-xs">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Quick Actions
-                <span class="fa fa-chevron-down"></span>
-            </a>
-            <ul class="dropdown-menu w230" role="menu">
-                {{-- @can('create users') --}}
-                    <li><a href="{{route('users.create')}}">Create User</a></li>
-                {{-- @endcan --}}
-                {{-- @can('create students') --}}
-                    <li><a href="{{route('students.create')}}">Create Student</a></li>
-                {{-- @endcan --}}
-                {{-- @can('create campus')
-                    <li><a href="#">Create Campus</a></li>
-                @endcan --}}
-                {{-- @can('view students') --}}
-                    <li class="divider"></li>
-                    <li><a href="{{route('students.index')}}">Enrolled Students</a></li>
-                {{-- @endcan --}}
-            </ul>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown dropdown-fuse">
-            <a href="#" class="dropdown-toggle mln" data-toggle="dropdown">
-                <span class="hidden-xs hidden-sm"><span class="name">{{\Auth::user()->first_name}}</span> </span>
-                <span class="fa fa-caret-down hidden-xs hidden-sm"></span>
-                <span class="profile-online">
-                    <img src="{{\Auth::user()->profile_pic}}" alt="avatar">
-                </span>
-            </a>
-            <ul class="dropdown-menu list-group keep-dropdown w190" role="menu">
-                <li class="list-group-item">
-                    <a href="/profile">
-                        Profile
-                        <span class="fa fa-user"></span> 
+            <!-- Sidebar Menu Toggle Button -->
+            <button class="button-toggle-menu">
+                <i class="mdi mdi-menu"></i>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown d-none d-xl-block">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                    Quick Actions
+                    <i class="mdi mdi-chevron-down ms-1"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <!-- item-->
+                    <a href="{{route('users.create')}}" class="dropdown-item">
+                        <i class="fe-user me-1"></i>
+                        <span>Create Users</span>
                     </a>
-                </li>
-                <!-- <li class="list-group-item">
-                    <a href="#">
-                        Settings
-                        <span class="fa fa-cog"></span> 
+
+                    <a href="{{route('students.create')}}" class="dropdown-item">
+                        <i class= "fas fa-user-graduate me-1"></i>
+                        <span>Create Students</span>
                     </a>
-                </li>
-                <li class="list-group-item">
-                    <a href="#">
-                        My Calendar
-                        <span class="fa fa-calendar-o"></span> 
+                    <a href="{{route('instructors.create')}}" class="dropdown-item">
+                        <i class=" fas fa-user-tie me-1"></i>
+                        <span>Create Instructors</span>
                     </a>
-                </li>
-                <li class="divider"></li>
-                <li class="list-group-item">
-                    <a href="#">
-                        Help
-                        <span class="fa fa-question-circle"></span> 
+                    <a href="{{route('students.index')}}" class="dropdown-item">
+                        <i class="fas fa-users"></i>
+                        <span>Enrolled Students</span>
                     </a>
-                </li> -->
-                <li class="list-group-item">
-                    <a href="{{ route('logout') }}">
-                        Logout
-                        <span class="fa fa-sign-out"></span> 
-                    </a>
-                </li>
-            </ul>
-        </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right mr25">
-        <li class="dropdown dropdown-fuse">
-            <div class="navbar-btn btn-group">
-                <button data-toggle="dropdown" class="btn dropdown-toggle">
-                    <span class="fa fa-bell fs16"></span>
-                </button>
-                <button data-toggle="dropdown" class="btn dropdown-toggle fs10 bg-color-2 visible-xl">
-                    8
-                </button>
-                <div class="dropdown-menu keep-dropdown w370 animated animated-shorter fadeIn activity-container timeline-container" role="menu">
-                    <div class="panel activity-content mbn">
-                        <div class="panel-menu">
-                            <span class="panel-title fw600"> Activity reports</span>
-                        </div>
-                        <div class="panel-body scroller-navbar pn">
-                            <ol class="timeline-list">
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-massage">
-                                        <span class="fa fa-envelope"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>John Doe</b> 
-                                        Sent you a message.
-                                        <a href="#">View now</a>
-                                    </div>
-                                    <div class="timeline-date">11:15am</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-info">
-                                        <span class="fa fa-info"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>Admin</b> 
-                                        created invoice:
-                                        <a href="#">iPad Air</a>
-                                    </div>
-                                    <div class="timeline-date">9:59am</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-info">
-                                        <span class="fa fa-info"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>Admin</b> 
-                                        created invoice:
-                                        <a href="#">iPhone 6s</a>
-                                    </div>
-                                    <div class="timeline-date">11:15am</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-massage">
-                                        <span class="fa fa-envelope"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>Lara Johnes</b> Sent you a message.
-                                        <a href="#">View now</a>
-                                    </div>
-                                    <div class="timeline-date">3:18pm</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-massage">
-                                        <span class="fa fa-envelope"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>John Doe</b> 
-                                        Sent you a message.
-                                        <a href="#">View now</a>
-                                    </div>
-                                    <div class="timeline-date">11:15am</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-info">
-                                        <span class="fa fa-info"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>Admin</b> 
-                                        created invoice:
-                                        <a href="#">iPad Air</a>
-                                    </div>
-                                    <div class="timeline-date">9:59am</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-info">
-                                        <span class="fa fa-info"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>Admin</b> 
-                                        created invoice:
-                                        <a href="#">iPhone 6s</a>
-                                    </div>
-                                    <div class="timeline-date">11:15am</div>
-                                </li>
-                                <li class="timeline-item">
-                                    <div class="timeline-icon bg-timeline-massage">
-                                        <span class="fa fa-envelope"></span>
-                                    </div>
-                                    <div class="timeline-desc">
-                                        <b>Lara Johnes</b> Sent you a message.
-                                        <a href="#">View now</a>
-                                    </div>
-                                    <div class="timeline-date">3:18pm</div>
-                                </li>
-                            </ol>
-                        </div>
-                        <div class="panel-footer text-center">
-                            <a href="#" class="btn"> View All </a>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-        </li>
-    </ul>
-</header>
+        </div>
+
+        <ul class="topbar-menu d-flex align-items-center">
+            <!-- Topbar Search Form -->
+            <li class="app-search dropdown me-3 d-none d-lg-block">
+                <form>
+                    <input type="search" class="form-control rounded-pill" placeholder="Search..." id="top-search">
+                    <span class="fe-search search-icon font-22"></span>
+                </form>
+                <div class="dropdown-menu dropdown-menu-animated dropdown-lg" id="search-dropdown">
+                    <!-- item-->
+                    <div class="dropdown-header noti-title">
+                        <h5 class="text-overflow mb-2">Found 22 results</h5>
+                    </div>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-home me-1"></i>
+                        <span>Analytics Report</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-aperture me-1"></i>
+                        <span>How can I help you?</span>
+                    </a>
+
+                    <!-- item-->
+                    <a href="javascript:void(0);" class="dropdown-item notify-item">
+                        <i class="fe-settings me-1"></i>
+                        <span>User profile settings</span>
+                    </a>
+
+                    <!-- item-->
+                    <div class="dropdown-header noti-title">
+                        <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+                    </div>
+
+                    <div class="notification-list">
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="d-flex align-items-start">
+                                <img class="d-flex me-2 rounded-circle" src="/assets/images/users/user-2.jpg" alt="Generic placeholder image" height="32">
+                                <div class="w-100">
+                                    <h5 class="m-0 font-14">Erwin E. Brown</h5>
+                                    <span class="font-12 mb-0">UI Designer</span>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item notify-item">
+                            <div class="d-flex align-items-start">
+                                <img class="d-flex me-2 rounded-circle" src="/assets/images/users/user-5.jpg" alt="Generic placeholder image" height="32">
+                                <div class="w-100">
+                                    <h5 class="m-0 font-14">Jacob Deo</h5>
+                                    <span class="font-12 mb-0">Developer</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </li>
+
+            <!-- Fullscreen Button -->
+            <li class="d-none d-md-inline-block">
+                <a class="nav-link waves-effect waves-light" href="index.html" data-toggle="fullscreen">
+                    <i class="fe-maximize font-22"></i>
+                </a>
+            </li>
+
+            <!-- Search Dropdown (for Mobile/Tablet) -->
+            <li class="dropdown d-lg-none">
+                <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="ri-search-line font-22"></i>
+                </a>
+                <div class="dropdown-menu dropdown-menu-animated dropdown-lg p-0">
+                    <form class="p-3">
+                        <input type="search" class="form-control" placeholder="Search ..." aria-label="Recipient's username">
+                    </form>
+                </div>
+            </li>
+            <!-- Notofication dropdown -->
+            <li class="dropdown notification-list">
+                <a class="nav-link dropdown-toggle waves-effect waves-light arrow-none" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <i class="fe-bell font-22"></i>
+                    <span class="badge bg-danger rounded-circle noti-icon-badge">9</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated dropdown-lg py-0">
+                    <div class="p-2 border-top-0 border-start-0 border-end-0 border-dashed border">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h6 class="m-0 font-16 fw-semibold"> Notification</h6>
+                            </div>
+                            <div class="col-auto">
+                                <a href="javascript: void(0);" class="text-dark text-decoration-underline">
+                                    <small>Clear All</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="px-1" style="max-height: 300px;" data-simplebar>
+
+                        <h5 class="text-muted font-13 fw-normal mt-2">Today</h5>
+                        <!-- item-->
+
+                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card unread-noti shadow-none mb-1">
+                            <div class="card-body">
+                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="notify-icon bg-primary">
+                                            <i class="mdi mdi-comment-account-outline"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate ms-2">
+                                        <h5 class="noti-item-title fw-semibold font-14">Datacorp <small class="fw-normal text-muted ms-1">1 min ago</small></h5>
+                                        <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                            <div class="card-body">
+                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="notify-icon bg-info">
+                                            <i class="mdi mdi-account-plus"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate ms-2">
+                                        <h5 class="noti-item-title fw-semibold font-14">Admin <small class="fw-normal text-muted ms-1">1 hours ago</small></h5>
+                                        <small class="noti-item-subtitle text-muted">New user registered</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <h5 class="text-muted font-13 fw-normal mt-0">Yesterday</h5>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                            <div class="card-body">
+                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="notify-icon">
+                                            <img src="/assets/images/users/avatar-2.jpg" class="img-fluid rounded-circle" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate ms-2">
+                                        <h5 class="noti-item-title fw-semibold font-14">Cristina Pride <small class="fw-normal text-muted ms-1">1 day ago</small></h5>
+                                        <small class="noti-item-subtitle text-muted">Hi, How are you? What about our next meeting</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <h5 class="text-muted font-13 fw-normal mt-0">30 Dec 2021</h5>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                            <div class="card-body">
+                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="notify-icon bg-primary">
+                                            <i class="mdi mdi-comment-account-outline"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate ms-2">
+                                        <h5 class="noti-item-title fw-semibold font-14">Datacorp</h5>
+                                        <small class="noti-item-subtitle text-muted">Caleb Flakelar commented on Admin</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <!-- item-->
+                        <a href="javascript:void(0);" class="dropdown-item p-0 notify-item card read-noti shadow-none mb-1">
+                            <div class="card-body">
+                                <span class="float-end noti-close-btn text-muted"><i class="mdi mdi-close"></i></span>
+                                <div class="d-flex align-items-center">
+                                    <div class="flex-shrink-0">
+                                        <div class="notify-icon">
+                                            <img src="/assets/images/users/avatar-4.jpg" class="img-fluid rounded-circle" alt="" />
+                                        </div>
+                                    </div>
+                                    <div class="flex-grow-1 text-truncate ms-2">
+                                        <h5 class="noti-item-title fw-semibold font-14">Karen Robinson</h5>
+                                        <small class="noti-item-subtitle text-muted">Wow ! this admin looks good and awesome design</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                        <div class="text-center">
+                            <i class="mdi mdi-dots-circle mdi-spin text-muted h3 mt-0"></i>
+                        </div>
+                    </div>
+
+                    <!-- All-->
+                    <a href="javascript:void(0);" class="dropdown-item text-center text-primary notify-item border-top border-light py-2">
+                        View All
+                    </a>
+
+                </div>
+            </li>
+
+            <!-- Light/Darj Mode Toggle Button -->
+            <li class="d-none d-sm-inline-block">
+                <div class="nav-link waves-effect waves-light" id="light-dark-mode">
+                    <i class="ri-moon-line font-22"></i>
+                </div>
+            </li>
+
+            <!-- User Dropdown -->
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle nav-user me-0 waves-effect waves-light" data-bs-toggle="dropdown" href="index.html#" role="button" aria-haspopup="false" aria-expanded="false">
+                    <img src="{{\Auth::user()->profile_pic}}" alt="user-image" class="rounded-circle">
+                    <span class="ms-1 d-none d-md-inline-block">
+                        {{\Auth::user()->name}} <i class="mdi mdi-chevron-down"></i>
+                    </span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end profile-dropdown ">
+                    <!-- item-->
+                    <div class="dropdown-header noti-title">
+                        <h6 class="text-overflow m-0">Welcome !</h6>
+                    </div>
+
+                    <!-- item-->
+                    <a href="/profile" class="dropdown-item notify-item">
+                        <i class="fe-user"></i>
+                        <span>My Account</span>
+                    </a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <!-- item-->
+                    <a href="{{ route('logout') }}" class="dropdown-item notify-item">
+                        <i class="fe-log-out"></i>
+                        <span>Logout</span>
+                    </a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

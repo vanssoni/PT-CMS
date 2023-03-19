@@ -1,24 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="chute chute-center ph45">
-        <!-- Spec Form -->
-        <div class="allcp-form">
-            <div class="panel">
-                <div class="panel-heading">
-                    <div class="panel-title">Create New Course
-                    </div>
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item active">Create Course</li>
+                    </ol>
                 </div>
-                <div class="panel-body">
-                {!! Form::open(['route' => 'courses.store', 'class' => 'forms-sample','files'  => true,]) !!}
-                    @include('modules.courses.form')
-                    {!! Form::submit('Create', ['class' => 'btn btn-primary ml-2']) !!}
-                {!! Form::close() !!}
+                <h4 class="page-title">Create Course</h4>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+    <div class="row">
+        <div class="col-8">
+            <div class="card">
+                <div class="card-body">
+
+                    <h4 class="header-title mb-4">Create Course</h4>
+                    {!! Form::open(['route' => 'courses.store', 'class' => 'forms-sample','files'  => true,]) !!}
+                        @include('modules.courses.form')
+                        {!! Form::submit('Create', ['class' => 'btn btn-primary mt-3']) !!}
+                    {!! Form::close() !!}
                 </div>
             </div>
-
         </div>
-        <!-- /Column Center -->
     </div>
 @endsection
               

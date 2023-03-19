@@ -1,248 +1,263 @@
-<aside id="sidebar_left" class="nano nano-light affix">
-    <!-- Sidebar Left Wrapper  -->
-    <div class="sidebar-left-content nano-content">
+<div class="app-menu">
 
-        <!-- Sidebar Header -->
-        <header class="sidebar-header">
+    <!-- Brand Logo -->
+    <div class="logo-box">
+        <!-- Brand Logo Light -->
+        <a href="/" class="logo-light">
+            <img src="/assets/images/logo-light.png" alt="logo" class="logo-lg">
+            <img src="/assets/images/logo-sm.png" alt="small logo" class="logo-sm">
+        </a>
 
-            <!-- Sidebar - Author -->
-            <div class="sidebar-widget author-widget">
-                <div class="media">
-                    <a class="media-left profile-online" href="#">
-                        <img src="{{\Auth::user()->profile_pic}}"  class="img-responsive" alt="">
-                    </a>
+        <!-- Brand Logo Dark -->
+        <a href="/" class="logo-dark">
+            <img src="/assets/images/logo-dark.png" alt="dark logo" class="logo-lg">
+            <img src="/assets/images/logo-sm.png" alt="small logo" class="logo-sm">
+        </a>
+    </div>
 
-                    <div class="media-body">
-                        <div>Welcome</div>
-                        <div class="media-author">{{\Auth::user()->first_name}}</div>
-                    </div>
-                </div>
-            </div>
+    <!-- menu-left -->
+    <div class="scrollbar">
+        <!--- Menu -->
+        <ul class="menu">
 
-        </header>
-        <!-- /Sidebar Header -->
+            <li class="menu-title">Navigation</li>
 
-        <!-- Sidebar Menu  -->
-        <ul class="nav sidebar-menu">
-            <li class="{{ isActiveRoute('/') }}">
-                <a href="/">
-                    <span class="sidebar-title">Dashboards</span>
-                    <span class="sb-menu-icon fa fa-home"></span>
+            <li class="menu-item">
+                <a href="/"  class="menu-link">
+                    <span class="menu-icon"><i data-feather="airplay"></i></span>
+                    <span class="menu-text"> Dashboard</span>
                 </a>
             </li>
+
             @can('view roles')
-                <li class="">
-                    <a class="accordion-toggle {{isParentRoute('roles')}}">
-                        <span class="sidebar-title">Roles</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa fa-group"></span>
+                <li class="menu-item">
+                    <a href="#roleMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('roles')}}">
+                        <span class="menu-icon"> <i class=" fas fa-user-tag"></i></span>
+                        <span class="menu-text"> Roles </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li class="{{ isActiveRoute('roles.index') }}">
-                            <a href="{{route('roles.index')}}">
-                                All Roles 
-                            </a>
-                        </li>
-                        @can('create roles')
-                            <li class="{{ isActiveRoute('roles.create') }}">
-                                <a href="{{route('roles.create')}}">
-                                    Create Role 
+                    <div class="collapse" id="roleMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('roles.index')}}" class="menu-link {{ isActiveRoute('roles.index') }}">
+                                    <span class="menu-text">All Roles</span>
                                 </a>
                             </li>
-                        @endcan
-                    </ul>
+                            @can('create roles')
+                                <li class="menu-item">
+                                    <a href="{{route('roles.create')}}" class="menu-link {{ isActiveRoute('roles.create') }}">
+                                        <span class="menu-text">Create Role</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view users')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('users')}}" href="{{route('users.index')}}">
-                        <span class="sidebar-title">Users</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-user"></span>
+                <li class="menu-item">
+                    <a href="#userMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('users')}}">
+                        <span class="menu-icon"> <i class="fas fa-users"></i></span>
+                        <span class="menu-text"> Users </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('users.index') }}">
-                            <a href="{{route('users.index')}}">
-                                All Users 
-                            </a>
-                        </li>
-                        @can('create users')
-                            <li  class="{{ isActiveRoute('users.create') }}">
-                                <a href="{{route('users.create')}}">
-                                    Create User 
+                    <div class="collapse" id="userMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('users.index')}}" class="menu-link {{ isActiveRoute('users.index') }}">
+                                    <span class="menu-text">All Users</span>
                                 </a>
                             </li>
-                         @endcan
-                    </ul>
+                            @can('create users')
+                                <li class="menu-item">
+                                    <a href="{{route('users.create')}}" class="menu-link {{ isActiveRoute('users.create') }}">
+                                        <span class="menu-text">Create User</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view courses')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('courses')}} " href="{{route('courses.index')}}">
-                        <span class="sidebar-title">Courses</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-book"></span>
+                <li class="menu-item">
+                    <a href="#courseMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('courses')}}">
+                        <span class="menu-icon"> <i class=" fas fa-book"></i></span>
+                        <span class="menu-text"> Courses </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('courses.index') }}">
-                            <a href="{{route('courses.index')}}">
-                                All Courses 
-                            </a>
-                        </li>
-                        @can('create courses')
-                            <li  class="{{ isActiveRoute('courses.create') }}">
-                                <a href="{{route('courses.create')}}">
-                                    Create Course 
+                    <div class="collapse" id="courseMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('courses.index')}}" class="menu-link {{ isActiveRoute('courses.index') }}">
+                                    <span class="menu-text">All Courses</span>
                                 </a>
                             </li>
-                         @endcan
-                    </ul>
+                            @can('create courses')
+                                <li class="menu-item">
+                                    <a href="{{route('courses.create')}}" class="menu-link {{ isActiveRoute('courses.create') }}">
+                                        <span class="menu-text">Create Course</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view subjects')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('subjects')}} " href="{{route('subjects.index')}}">
-                        <span class="sidebar-title">Subjects</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-file"></span>
+                <li class="menu-item">
+                    <a href="#subjectMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('subjects')}}">
+                        <span class="menu-icon"> <i class="fas fa-book-open"></i></span>
+                        <span class="menu-text"> Subjects </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('subjects.index') }}">
-                            <a href="{{route('subjects.index')}}">
-                                All Subjects 
-                            </a>
-                        </li>
-                        @can('create subjects')
-                            <li  class="{{ isActiveRoute('subjects.create') }}">
-                                <a href="{{route('subjects.create')}}">
-                                Create Subject
+                    <div class="collapse" id="subjectMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('subjects.index')}}" class="menu-link {{ isActiveRoute('subjects.index') }}">
+                                    <span class="menu-text">All Subjects</span>
                                 </a>
                             </li>
-                        @endcan
-                    </ul>
+                            @can('create subjects')
+                                <li class="menu-item">
+                                    <a href="{{route('subjects.create')}}" class="menu-link {{ isActiveRoute('subjects.create') }}">
+                                        <span class="menu-text">Create Subject</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view instructors')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('instructors')}}" href="{{route('instructors.index')}}">
-                        <span class="sidebar-title">Instructors</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-group"></span>
+                <li class="menu-item">
+                    <a href="#instructorMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('instructors')}}">
+                        <span class="menu-icon"><i class=" fas fa-user-tie me-1"></i></span>
+                        <span class="menu-text"> Instructors </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('instructors.index') }}">
-                            <a href="{{route('instructors.index')}}">
-                                All Instructors 
-                            </a>
-                        </li>
-                        @can('create instructors')
-                            <li  class="{{ isActiveRoute('instructors.create') }}">
-                                <a href="{{route('instructors.create')}}">
-                                Create Instructor
+                    <div class="collapse" id="instructorMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('instructors.index')}}" class="menu-link {{ isActiveRoute('instructors.index') }}">
+                                    <span class="menu-text">All Instructors</span>
                                 </a>
                             </li>
-                        @endcan
-                    </ul>
+                            @can('create instructors')
+                                <li class="menu-item">
+                                    <a href="{{route('instructors.create')}}" class="menu-link {{ isActiveRoute('instructors.create') }}">
+                                        <span class="menu-text">Create Instructor</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view students')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('students')}}" href="{{route('students.index')}}">
-                        <span class="sidebar-title">Students</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-group"></span>
+                <li class="menu-item">
+                    <a href="#studentMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('students')}}">
+                        <span class="menu-icon"><i class= "fas fa-user-graduate me-1"></i></i></span>
+                        <span class="menu-text"> Students </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('students.index') }}">
-                            <a href="{{route('students.index')}}">
-                                All Students 
-                            </a>
-                        </li>
-                        @can('create students')
-                            <li  class="{{ isActiveRoute('students.create') }}">
-                                <a href="{{route('students.create')}}">
-                                Create Student
+                    <div class="collapse" id="studentMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('students.index')}}" class="menu-link {{ isActiveRoute('students.index') }}">
+                                    <span class="menu-text">All Students</span>
                                 </a>
                             </li>
-                        @endcan
-                    </ul>
+                            @can('create students')
+                                <li class="menu-item">
+                                    <a href="{{route('students.create')}}" class="menu-link {{ isActiveRoute('students.create') }}">
+                                        <span class="menu-text">Create Student</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view schedules')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('schedules')}}" href="{{route('schedules.index')}}">
-                        <span class="sidebar-title">Schedules</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-calendar"></span>
+                <li class="menu-item">
+                    <a href="#scheduleMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('schedules')}}">
+                        <span class="menu-icon"> <i class=" fas fa-calendar"></i></span>
+                        <span class="menu-text"> Schedules </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('schedules.index') }}">
-                            <a href="{{route('schedules.index')}}">
-                                All Schedules 
-                            </a>
-                        </li>
-                        @can('create schedules')
-                            <li  class="{{ isActiveRoute('schedules.create') }}">
-                                <a href="{{route('schedules.create')}}">
-                                Create Schedule
+                    <div class="collapse" id="scheduleMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('schedules.index')}}" class="menu-link {{ isActiveRoute('schedules.index') }}">
+                                    <span class="menu-text">All Schedules</span>
                                 </a>
                             </li>
-                        @endcan
-                    </ul>
+                            @can('create schedules')
+                                <li class="menu-item">
+                                    <a href="{{route('schedules.create')}}" class="menu-link {{ isActiveRoute('schedules.create') }}">
+                                        <span class="menu-text">Create Schedule</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
             @can('view road tests')
-            <li>
-                <a class="accordion-toggle {{isParentRoute('road-tests')}}" href="{{route('road-tests.index')}}">
-                    <span class="sidebar-title">Road Tests</span>
-                    <span class="caret"></span>
-                    <span class="sb-menu-icon fa fa-flag-o"></span>
-                </a>
-                <ul class="nav sub-nav">
-                    <li  class="{{ isActiveRoute('road-tests.index') }}">
-                        <a href="{{route('road-tests.index')}}">
-                            All Road Tests 
-                        </a>
-                    </li>
-                    @can('create road tests')
-                        <li  class="{{ isActiveRoute('road-tests.create') }}">
-                            <a href="{{route('road-tests.create')}}">
-                            Create Road Test 
-                            </a>
-                        </li>
-                    @endcan
-                </ul>
-            </li>
-        @endcan
-
-            @can('view pdf forms')
-                <li>
-                    <a class="accordion-toggle {{isParentRoute('pdf-forms')}}" href="{{route('pdf-forms.index')}}">
-                        <span class="sidebar-title">Pdf Forms</span>
-                        <span class="caret"></span>
-                        <span class="sb-menu-icon fa fa-file"></span>
+                <li class="menu-item">
+                    <a href="#roadTestMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('road-tests')}}">
+                        <span class="menu-icon"> <i class="fas fa-car"></i></span>
+                        <span class="menu-text">  Road Tests  </span>
+                        <span class="menu-arrow"></span>
                     </a>
-                    <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('pdf-forms.index') }}">
-                            <a href="{{route('pdf-forms.index')}}">
-                                All Pdf Forms 
-                            </a>
-                        </li>
-                        @can('create courses')
-                            <li  class="{{ isActiveRoute('pdf-forms.create') }}">
-                                <a href="{{route('pdf-forms.create')}}">
-                                    Upload Pdf form 
+                    <div class="collapse" id="roadTestMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('road-tests.index')}}" class="menu-link {{ isActiveRoute('road-tests.index') }}">
+                                    <span class="menu-text"> All Road Tests </span>
                                 </a>
                             </li>
-                        @endcan
-                    </ul>
+                            @can('create road tests')
+                                <li class="menu-item">
+                                    <a href="{{route('road-tests.create')}}" class="menu-link {{ isActiveRoute('road-tests.create') }}">
+                                        <span class="menu-text">Create Road Test</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
                 </li>
             @endcan
-
+            @can('view pdf forms')
+                <li class="menu-item">
+                    <a href="#pdfFormMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('pdf-forms')}}">
+                        <span class="menu-icon"> <i class="fab fa-wpforms"></i></span>
+                        <span class="menu-text">  Pdf Forms  </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="pdfFormMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('pdf-forms.index')}}" class="menu-link {{ isActiveRoute('pdf-forms.index') }}">
+                                    <span class="menu-text"> All Pdf Forms </span>
+                                </a>
+                            </li>
+                            @can('create pdf forms')
+                                <li class="menu-item">
+                                    <a href="{{route('pdf-forms.create')}}" class="menu-link {{ isActiveRoute('pdf-forms.create') }}">
+                                        <span class="menu-text"> Upload Pdf form </span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
+                </li>
+            @endcan
         </ul>
-        <!-- /Sidebar Menu  -->
-
+        <!--- End Menu -->
+        <div class="clearfix"></div>
     </div>
-    <!-- /Sidebar Left Wrapper  -->
+</div>
 
-</aside>
+    

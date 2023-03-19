@@ -2,19 +2,19 @@
 <div class="row">
     <div class="col-md-6">
         <div class="row mb10">
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-2">
                 <div class="form-group">
                     <label for="date" class="floating-label control-label">Date:</label>
-                        <input class="form-control datepicker-default" id="date" type="text" placeholder="Date" name="date" value="{{@$schedule->date}}" required>
+                        <input class="form-control datepicker-default" id="date" type="text" placeholder="Date" name="date" value="{{@$roadTest->date}}" required>
                 </div>
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-2">
                 <div class="form-group">
                     <label for="location" class="floating-label control-label">Location:</label>
-                        <input class="form-control" id="location" type="text" placeholder="Location" name="location" value="{{@$schedule->location}}" required>
+                        <input class="form-control" id="location" type="text" placeholder="Location" name="location" value="{{@$roadTest->location}}" required>
                 </div>
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-2">
                 <div class="form-group">
                     <label for="disabledInput" class="floating-label control-label">Student:</label>
                 
@@ -26,9 +26,9 @@
                     </select>
                 </div>           
             </div>
-            <div class="col-md-12 pt18">
+            <div class="col-md-12 mt-2">
                 <div class="form-group">
-                    <label for="disabledInput" class="floating-label control-label">Student:</label>
+                    <label for="disabledInput" class="floating-label control-label">Status:</label>
                 
                     <select id="" name="status" required class="form-control">
                         <option value=''>Select Status</option>
