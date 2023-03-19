@@ -2,7 +2,7 @@
     <div class="col-8 mb-3">
         @csrf
         <input type="text" name="name" id="name" class="form-control"
-            placeholder="Name" required value="{{@$role->name}}">
+            placeholder="Name" required value="{{@$role->name}}" {{(@$role->name == 'instructor' ? 'readonly': '')}}>
     </div>
 </div>
 <div class="row mb5">
