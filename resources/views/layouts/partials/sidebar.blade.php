@@ -61,13 +61,13 @@
                         <span class="sb-menu-icon fa fa-user"></span>
                     </a>
                     <ul class="nav sub-nav">
-                        <li  class="{{ isActiveRoute('roles.index') }}">
+                        <li  class="{{ isActiveRoute('users.index') }}">
                             <a href="{{route('users.index')}}">
                                 All Users 
                             </a>
                         </li>
                         @can('create users')
-                            <li  class="{{ isActiveRoute('roles.index') }}">
+                            <li  class="{{ isActiveRoute('users.create') }}">
                                 <a href="{{route('users.create')}}">
                                     Create User 
                                 </a>
