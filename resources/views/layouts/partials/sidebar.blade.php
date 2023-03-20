@@ -179,6 +179,31 @@
                     </div>
                 </li>
             @endcan
+            @can('view fees')
+                <li class="menu-item">
+                    <a href="#feeMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('fees')}}">
+                        <span class="menu-icon"><i class= "fas fa-dollar-sign me-1"></i></i></span>
+                        <span class="menu-text"> Fees </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="feeMenu">
+                        <ul class="sub-menu">
+                            <li class="menu-item">
+                                <a href="{{route('fees.index')}}" class="menu-link {{ isActiveRoute('fees.index') }}">
+                                    <span class="menu-text">All Fees</span>
+                                </a>
+                            </li>
+                            @can('create fees')
+                                <li class="menu-item">
+                                    <a href="{{route('fees.create')}}" class="menu-link {{ isActiveRoute('fees.create') }}">
+                                        <span class="menu-text">Collect Fee</span>
+                                    </a>
+                                </li>
+                            @endcan
+                        </ul>
+                    </div>
+                </li>
+            @endcan
             @can('view schedules')
                 <li class="menu-item">
                     <a href="#scheduleMenu" data-bs-toggle="collapse" class="menu-link {{isParentRoute('schedules')}}">

@@ -62,6 +62,14 @@
     </div>
 </div>
 <div class="row mt-3">
+    <label for="disabledInput" class="col-lg-3 col-form-label">Course fees:</label>
+
+    <div class="col-lg-8">
+        <input class="form-control" id="" type="number" name="fees" id="name"
+        placeholder="Course fees"  value='{{@$course->fees}}' step=".01">
+    </div>
+</div>
+<div class="row mt-3">
     <label for="disabledInput" class="col-lg-3 col-form-label">Practice:</label>
 
     <div class="col-lg-8">

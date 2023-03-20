@@ -36,6 +36,7 @@ class CourseController extends Controller
             'course_type' => 'required',
             'course_time_type' => 'required',
             'hours' => 'required',
+            'fees' => 'required',
             'practice' => 'required',
         ]);
         if ($validator->fails()) {
@@ -72,6 +73,7 @@ class CourseController extends Controller
             'course_type' => 'required',
             'course_time_type' => 'required',
             'hours' => 'required',
+            'fees' => 'required',
             'practice' => 'required',
         ]);
  

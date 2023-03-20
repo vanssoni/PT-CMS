@@ -15,7 +15,11 @@ class Student extends Model
     ];
     protected $appends = [
         'courses_name',
-        'name'
+        'name',
+        'total_fees',
+        'remaining_fees',
+        'paid_fees',
+        'first_course_id',
     ];
 
     public function user(){
@@ -27,6 +31,9 @@ class Student extends Model
     }
     public function road_tests(){
         return $this->hasMany(RoadTest::class,'student_id', 'id');
+    }
+    public function fees(){
+        return $this->hasMany(Fee::class,'student_id', 'id');
     }
     
     public function  getCoursesNameAttribute(){
@@ -53,5 +60,38 @@ class Student extends Model
     public function getNameAttribute(){
         if($this->user)
         return $this->user->first_name.' '.$this->user->last_name;
+    }
+
+    public function getTotalFeesAttribute(){
+        if(isset($this->courses)){
+            
+            $courseIds = $this->courses()->pluck('course_id')->toArray();
+            return Course::whereIn('id', $courseIds)->sum('fees');
+        }
+    }
+    public function getRemainingFeesAttribute(){
+        if(isset($this->courses) && isset($this->attributes['id'])){
+            
+            $courseIds = $this->courses()->pluck('course_id')->toArray();
+            $totalFee =  Course::whereIn('id', $courseIds)->sum('fees');
+            $paidFee =   Fee::where('student_id', $this->attributes['id'])->sum('amount');
+            if($totalFee ){
+                return number_format($totalFee-$paidFee, 2, '.', '');
+            }
+        }
+        return 0.00;
+    }
+    public function getPaidFeesAttribute(){
+        if( isset($this->attributes['id'])){
+            
+            return Fee::where('student_id', $this->attributes['id'])->sum('amount');
+        }
+        return 0.00;
+    }
+
+    public function getFirstCourseIdAttribute(){
+        if(isset($this->courses)){
+            return $this->courses()->pluck('course_id')->first();
+        }
     }
 }

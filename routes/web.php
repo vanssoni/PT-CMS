@@ -28,23 +28,33 @@ Route::group(['middleware' => ['auth:web']], function() {
     });
     
     Route::post('/update-profile', 'UserController@updateProfile');
+
     //Roles Route
     Route::resource('roles', RoleController::class);
+
     //courses route
     Route::resource('courses', CourseController::class);
+
     //subjects route
     Route::resource('subjects', SubjectController::class);
     Route::get('get-course-subjects', 'SubjectController@getCourseSubjects')->name('get-course-subjects');
+
     //instructors route
     Route::resource('instructors', InstructorController::class);
     Route::get('get-course-instructors', 'InstructorController@getCourseInstructors')->name('get-course-instructors');
+
     //student routes
     Route::resource('students', StudentController::class);
     Route::get('get-course-students', 'StudentController@getCourseStudents')->name('get-course-students');
+    //fees routes
+    Route::resource('fees', FeeController::class);
+
     //schedules routes
     Route::resource('schedules', ScheduleController::class);
+
     //road test routes
     Route::resource('road-tests', RoadTestController::class);
+
     //pdf form routes
     Route::resource('pdf-forms', PdfFormController::class);
 

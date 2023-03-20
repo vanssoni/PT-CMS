@@ -93,7 +93,7 @@ class StudentController extends Controller
         //authorize the action
         $this->authorize('view students', \Auth::user());
 
-        $student = Student::with(['user', 'courses','road_tests'])->find($id);
+        $student = Student::with(['user', 'courses','road_tests', 'fees'])->find($id);
         return view('modules.students.view', compact('student'));
     }
 
