@@ -1,4 +1,7 @@
 .swal2-container.swal2-backdrop-show,.swal2-container.swal2-noanimation{
     background-color: none !important;
 }
+.progress{
+    height: 30px !important;
+}
   

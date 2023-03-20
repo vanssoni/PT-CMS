@@ -95,9 +95,9 @@
                             @foreach($student->courses as $course)
                                 <h5>Course: {{getCourseName($course->course_id)}}</h5>
                                 @foreach(getCourseSubjects($course->course_id) as $subject)
-                                    <h6>Subject Name:-</h6>
+                                    <h5>Subject Name:-</h5>
                                     {{$subject->name}}
-                                    <div class="progress mt10">
+                                    <div class="progress mt-2">
                                         @php
                                          $percenatage = getCompletedScheduleMinutes($student->id, $subject->id);
                                         @endphp
