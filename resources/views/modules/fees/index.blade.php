@@ -36,6 +36,7 @@
                                     <th>Student</th>
                                     <th>Date</th>
                                     <th>Amount</th>
+                                    <th>Pending Amount</th>
                                     <th>Payment Mode</th>
                                     <th>Received By</th>
                                     <th>Action</th>
@@ -48,6 +49,7 @@
                                         <td>{{@$fee->student->name}}</td>
                                         <td>{{@$fee->date}}</td>
                                         <td>{{@$fee->amount}}</td>
+                                        <td>{{@$fee->pending_amount}}</td>
                                         <td>{{@$fee->payment_mode}}</td>
                                         <td>{{@$fee->user->name}}</td>
                                         <td>@include('modules.fees.action',['fee' => $fee])</td>

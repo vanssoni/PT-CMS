@@ -5,7 +5,7 @@
             <div class="col-md-12 mt-2">
                 <div class="form-group">
                     <label for="date" class="floating-label control-label">Date:</label>
-                        <input class="form-control datepicker-default" id="date" type="text" placeholder="Date" name="date" value="{{@$fee->date}}" required>
+                        <input class="form-control datepicker-default-max-today" id="date" type="text" placeholder="Date" name="date" value="{{@$fee->date}}" required>
                 </div>
             </div>
             <div class="col-md-12 mt-2">
@@ -22,13 +22,25 @@
                         <select id="students" name="student_id" required class="form-control">
                             <option value=''>Select Student</option>
                             @foreach($students as $student)
-                                <option value='{{$student->id}}' {{(@$student->id == @$fee->student_id ? 'selected' :'')}}>{{$student->name}}</option>
+                                <option value='{{$student->id}}' {{(@$student->id == @$fee->student_id ? 'selected' :'')}} data-remaing-fees="{{$student->remaining_fees}}">{{$student->name}}</option>
                             @endforeach
                         </select>
                     </div>           
                 </div>
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label for="location" class="floating-label control-label">Remaing Fees:</label>
+                            <input class="form-control" id="remaing_amount" type="number" placeholder="Remaing Fee" value="" readonly>
+                    </div>
+                </div>
             @else
                 <input type="hidden" name="student_id" value="{{@$fee->student_id}}">
+                <div class="col-md-12 mt-2">
+                    <div class="form-group">
+                        <label for="location" class="floating-label control-label">Remaing Fees:</label>
+                            <input class="form-control" id="remaing_fee" type="number" placeholder="Remaing Fees"  value="{{@$fee->student->remaining_fees}}" step=".01"  readonly>
+                    </div>
+                </div>
             @endif
             <div class="col-md-12 mt-2">
                 <div class="form-group">
@@ -48,3 +60,15 @@
         </div>
     </div>
 </div>
+@push('scripts')
+    <script>
+        $(function() {
+            
+            $('#students').on('change', function () {
+                var remaining_fees = $(this).find(':selected').attr('data-remaing-fees');
+                $('#remaing_amount').val(remaining_fees);
+            });
+        });
+    </script>
+@endpush
+

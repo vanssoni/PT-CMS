@@ -4,6 +4,9 @@
     function e() {}
     (e.prototype.init = function () {
         t(".datepicker-default").flatpickr();
+        t(".datepicker-default-max-today").flatpickr({
+            maxDate: "today" 
+        });
     }),
         (t.FormPickers = new e()),
         (t.FormPickers.Constructor = e);

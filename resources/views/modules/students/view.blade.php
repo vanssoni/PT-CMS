@@ -161,17 +161,19 @@
                                                 <th>#</th>
                                                 <th>Date</th>
                                                 <th>Amount</th>
+                                                <th>Pending Amount</th>
                                                 <th>Payment Mode</th>
                                                 <th>Received By</th>
                                                 <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($student->fees as $fee)
+                                            @foreach($student->fees()->latest()->get() as $fee)
                                                 <tr>
                                                     <td>{{@$loop->iteration}}</td>
                                                     <td>{{@$fee->date}}</td>
                                                     <td>{{@$fee->amount}}</td>
+                                                    <td>{{@$fee->pending_amount}}</td>
                                                     <td>{{@$fee->payment_mode}}</td>
                                                     <td>{{@$fee->user->name}}</td>
                                                     <td>@include('modules.fees.action',['fee' => $fee])</td>
@@ -230,7 +232,7 @@
                             <div class="col-md-12 mt-2">
                                 <div class="form-group">
                                     <label for="date" class="floating-label control-label">Date:</label>
-                                        <input class="form-control datepicker-default" id="date" type="text" placeholder="Date" name="date" value="" required>
+                                        <input class="form-control datepicker-default-max-today" id="date" type="text" placeholder="Date" name="date" value="" required>
                                 </div>
                             </div>
                             <div class="col-md-12 mt-2">

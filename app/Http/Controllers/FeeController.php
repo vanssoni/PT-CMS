@@ -15,7 +15,7 @@ class FeeController extends Controller
         //authorize the action
         $this->authorize('view fees', \Auth::user());
 
-        $fees = Fee::with(['student','user'])->get();
+        $fees = Fee::with(['student','user'])->latest()->get();
         return view('modules.fees.index', compact('fees'));
     }
 

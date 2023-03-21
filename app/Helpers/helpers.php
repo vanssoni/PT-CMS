@@ -3,6 +3,7 @@ use App\Models\Subject;
 use App\Models\Course;
 use App\Models\Schedule;
 use App\Models\Student;
+use App\Models\Fee;
 
 function getStatusBadge($status) {
     switch ($status) {
@@ -82,4 +83,10 @@ function isParentRoute($routeName) {
     if ($currentSegment === $routeName) {
         return 'menu-open';
     }
+}
+function getPendingAmountTillTheId($id, $student_id, $course_id) {
+
+    $courseFee = Course::where('id', $course_id)->pluck('fees')->first();
+    $paidTillNow = Fee::where('student_id', $student_id)->where('course_id', $course_id)->where('id' ,'<=', $id)->sum('amount');
+    return number_format($courseFee-$paidTillNow, 2, '.', '');
 }
