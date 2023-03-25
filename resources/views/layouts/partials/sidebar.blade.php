@@ -275,10 +275,23 @@
                                     </a>
                                 </li>
                             @endcan
+                            <li class="menu-item">
+                                <a href="{{route('pdf-forms.get-pdf-form-submissions')}}" class="menu-link {{ isActiveRoute('pdf-forms.get-pdf-form-submissions') }}">
+                                    <span class="menu-text"> All Pdf Form Submissions </span>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </li>
             @endcan
+            @if(\Auth::user()->hasRole('instructor') || \Auth::user()->hasRole('student'))
+                <li class="menu-item">
+                    <a href="{{route('pdf-forms.get-my-pdf-forms')}}"  class="menu-link {{ isActiveRoute('pdf-forms.get-my-pdf-forms') }}">
+                        <span class="menu-icon"><i class="fas fa-file-upload"></i></span>
+                        <span class="menu-text"> Submit PDF Forms</span>
+                    </a>
+                </li>
+            @endif
         </ul>
         <!--- End Menu -->
         <div class="clearfix"></div>
