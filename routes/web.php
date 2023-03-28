@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth:web']], function() {
     Route::get('/', 'HomeController@index');
 
     //users resource conrtol the creation/updation and deletion of users
+    Route::get('users/search', 'UserController@searchUsers');
     Route::resource('users', UserController::class);
     Route::get('/profile', function(){
         return view('modules.users.my-profile');

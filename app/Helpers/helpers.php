@@ -4,6 +4,8 @@ use App\Models\Course;
 use App\Models\Schedule;
 use App\Models\Student;
 use App\Models\Fee;
+use App\Models\User;
+use App\Models\Instructor;
 
 function getStatusBadge($status) {
     switch ($status) {
@@ -89,4 +91,16 @@ function getPendingAmountTillTheId($id, $student_id, $course_id) {
     $courseFee = Course::where('id', $course_id)->pluck('fees')->first();
     $paidTillNow = Fee::where('student_id', $student_id)->where('course_id', $course_id)->where('id' ,'<=', $id)->sum('amount');
     return number_format($courseFee-$paidTillNow, 2, '.', '');
+}
+function getHrefLinkOfUser($id){
+    $user = User::find($id);
+    if($user->hasRole('student')){
+        $student = Student::where('user_id', $id)->first();
+        return url('students').'/'.@$student->id;
+    }
+    if($user->hasRole('instructor')){
+        $instructor = Instructor::where('user_id', $id)->first();
+        return url('instructors').'/'.@$instructor->id.'/edit';
+    }
+    return url('users').'/'.@$user->id.'/edit';
 }

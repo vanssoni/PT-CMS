@@ -41,5 +41,21 @@ $(document).ready(function() {
         placeholder: "Select Below Options",
         allowClear: true
     });
-
+    function searchForUsers(search){
+        $.ajax({
+            url: "/users/search",
+            type: "GET",
+            data: {
+                search: search
+            },
+            success: function (data) {
+                $('#search-dropdown').html(data.html);
+            }
+        });
+    }
+    $('#top-search').on('keyup', function () {
+        var search = $(this).val();
+        searchForUsers(search);
+    });
+   
 });

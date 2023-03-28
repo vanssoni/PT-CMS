@@ -4,4 +4,8 @@
 .progress{
     height: 30px !important;
 }
+#search-dropdown{
+    max-height: 400px !important;
+    overflow-y: auto !important;
+}
   

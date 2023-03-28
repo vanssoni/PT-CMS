@@ -137,6 +137,7 @@ class UserController extends Controller
         $user->save();
         return redirect()->route('users.index')->withSuccess('User Updated Successfully!');
     }
+
     public function destroy( $id){
         
         //authorize the action
@@ -145,6 +146,95 @@ class UserController extends Controller
         $user = User::find($id);
         $user->delete();
         return redirect()->route('users.index')->withSuccess('User deleted Successfully!');
+    }
+    public function searchUsers( Request $request){
+        $search = $request->search;
+        $searchedUsers = User::where(function($q) use($search){
+            $q->where('first_name', 'like', '%'.$search.'%')
+            ->orWhere('last_name', 'like', '%'.$search.'%')
+            ->orWhere('email', 'like', '%'.$search.'%');
+        })->whereHas('roles', function($q){
+            $q->where('name', '!=', 'admin');
+        })->get();
+        $html = '';
+        $students = [];
+        $users = [];
+        $instructors = [];
+        if(!count($searchedUsers) || !$request->search){
+            $html = '<div class="dropdown-header noti-title">
+                    <h5 class="text-overflow mb-2">Found 0 results</h5>
+            </div>';
+        }else{
+            $html .= '<div class="dropdown-header noti-title">
+                <h5 class="text-overflow mb-2">Found '.count($searchedUsers).' results</h5>
+            </div>';
+
+            foreach($searchedUsers as $user){
+                if($user->hasRole('student')){
+                    $students[] = $user;
+                }
+                elseif($user->hasRole('instructor')){
+                    $instructors[] = $user;
+                }else{
+                    $users[] = $user;
+                }
+            }
+            $html.='<div class="dropdown-header noti-title">
+                    <h6 class="text-overflow mb-2 text-uppercase">Students</h6>
+                </div>';
+            if(count($students)){
+                $html.='<div class="notification-list">';
+                foreach($students as $student){
+                    $html.='<a href="'.$student->href.'" class="dropdown-item notify-item">
+                        <div class="d-flex align-items-start">
+                            <img class="d-flex me-2 rounded-circle" src="'.$student->profile_pic.'" alt="Generic placeholder image" height="32">
+                            <div class="w-100">
+                                <h5 class="m-0 font-14">'.$student->name.'</h5>
+                            </div>
+                        </div>
+                    </a>';
+                }
+                $html.='</div>';
+            }
+            $html.='<div class="dropdown-header noti-title">
+                    <h6 class="text-overflow mb-2 text-uppercase">Instrcutors</h6>
+                </div>';
+            if(count($instructors)){
+                $html.='<div class="notification-list">';
+                foreach($instructors as $instructor){
+                    $html.='<a href="'.$instructor->href.'" class="dropdown-item notify-item">
+                        <div class="d-flex align-items-start">
+                            <img class="d-flex me-2 rounded-circle" src="'.$instructor->profile_pic.'" alt="Generic placeholder image" height="32">
+                            <div class="w-100">
+                                <h5 class="m-0 font-14">'.$instructor->name.'</h5>
+                            </div>
+                        </div>
+                    </a>';
+                }
+                $html.='</div>';
+            }
+            $html.='<div class="dropdown-header noti-title">
+                    <h6 class="text-overflow mb-2 text-uppercase">Users</h6>
+                </div>';
+            if(count($users)){
+                $html.='<div class="notification-list">';
+                foreach($users as $user){
+                    $html.='<a href="'.$user->href.'" class="dropdown-item notify-item">
+                        <div class="d-flex align-items-start">
+                            <img class="d-flex me-2 rounded-circle" src="'.$user->profile_pic.'" alt="Generic placeholder image" height="32">
+                            <div class="w-100">
+                                <h5 class="m-0 font-14">'.$user->name.'</h5>
+                            </div>
+                        </div>
+                    </a>';
+                }
+                $html.='</div>';
+            }
+        }
+        return response()->json([
+            'success' => true,
+            'html' =>$html,
+        ]);
     }
 
 }

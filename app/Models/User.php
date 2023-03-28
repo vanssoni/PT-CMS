@@ -41,7 +41,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public $appends = ['name'];
+    public $appends = ['name', 'href'];
     public function getProfilePicAttribute(){
         $profile_pic = $this->attributes['profile_pic'] ? url('/storage/users/'.$this->attributes['profile_pic']) :  url('/assets/img/avatars/profile_avatar.jpg');
         return $profile_pic;
@@ -49,5 +49,9 @@ class User extends Authenticatable
     public function getNameAttribute(){
         if(isset($this->attributes['first_name']))
         return $this->attributes['first_name'] . ' '.$this->attributes['last_name'];
+    }
+    public function getHrefAttribute(){
+        if(isset($this->attributes['id']))
+        return getHrefLinkOfUser($this->attributes['id']);
     }
 }
