@@ -47,7 +47,7 @@ class LoginController extends Controller
 
         if (Auth::attempt([$fieldType => $credentials['email'], 'password' => $credentials['password']])) {
             // Authentication passed...
-            return redirect()->intended('/');
+            return redirect()->route('home');
         }
 
         return redirect()->back()->withErrors([

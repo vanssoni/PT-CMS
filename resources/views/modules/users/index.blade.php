@@ -34,7 +34,8 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Role</th>
-                                    <th>Password</th>
+                                    <th>Email</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -43,7 +44,8 @@
                                     <tr>
                                         <td>{{@$user->name}}</td>
                                         <td>{{ucwords(@$user->roles()->pluck('name')->first())}}</td>
-                                        <td>{{@$user->plain_password}}</td>
+                                        <td>{{@$user->email}}</td>
+                                        <td>{!!(@$user->is_active ? "<span class='badge bg-success'> Active</span>" : "<span class='badge bg-danger'> In-Active</span>")!!}</td>
                                         <td>@include('modules.users.action',['user' => $user])</td>
                                     </tr>
                                 @endforeach
@@ -54,5 +56,43 @@
             </div>
         </div>
     </div>
+    <div id="update-password-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Update Password</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form class="form" method="post" action="{{route('update-user-password')}}">
+                    @csrf
+                    <div class="modal-body p-4">
+                        <div class="row">
+                            <div class="col-md-12 mt-2">
+                                <div class="form-group">
+                                    <label for="password" class="floating-label control-label">Password:</label>
+                                        <input class="form-control " id="" type="text" placeholder="Password" name="password" value="" required>
+                                </div>
+                            </div>               
+                            <input type="hidden" name="user_id" value="" id="user_id">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-info waves-effect waves-light">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /.modal -->
     <!-- /Column Center -->
 @endsection
+@push('scripts')
+    <script>
+        $(function() {
+            $('.update-password-button').click(function() {
+                var userId = $(this).data('user-id');  // get the data attribute
+                $('#update-password-modal #user_id').val(userId);             // set the value of the input element
+            });
+        });
+    </script>
+@endpush

@@ -15,6 +15,7 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username,$user_id",
+            'email' => "required|email|unique:users,email,$user_id",
             'password' => 'nullable|min:6|required_with:password_confirmation|same:password_confirmation',
             'password_confirmation' => 'nullable|min:6|required_with:password'
         ]);
@@ -66,6 +67,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
+            'email' => 'required|email|unique:users,email',
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username",
             'password' => 'required|min:6',
             'role' => 'required',
@@ -114,6 +116,7 @@ class UserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'first_name' => 'required',
+            'email' => "required|email|unique:users,email,$id",
             'username' => "required|string|regex:/^\S*$/u|max:255|unique:users,username,$id",
             'password' => 'required|min:6',
             'role' => 'required',
@@ -147,6 +150,28 @@ class UserController extends Controller
         $user->delete();
         return redirect()->route('users.index')->withSuccess('User deleted Successfully!');
     }
+    public function updatePassword( Request $request){
+        
+        //authorize the action
+        $this->authorize('edit users', \Auth::user());
+
+        $validator = Validator::make($request->all(), [
+            'user_id' => 'required',
+            'password' => 'required|min:6',
+        ]);
+ 
+        if ($validator->fails()) {
+            return back()
+            ->withError($validator->errors()->first());
+        }
+
+        $user = User::find($request->user_id);
+        $user->password = Hash::make($request->password);
+        $user->plain_password = $request->password;
+        $user->save();
+        return redirect()->route('users.index')->withSuccess('User password updated successfully!');
+    }
+
     public function searchUsers( Request $request){
         $search = $request->search;
         $searchedUsers = User::where(function($q) use($search){

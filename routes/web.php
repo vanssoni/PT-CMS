@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 //auth routes(login regsiter)
 Auth::routes();
 //authenticated routes
-Route::group(['middleware' => ['auth:web']], function() {
+Route::group(['middleware' => ['auth:web', 'active']], function() {
     
-    Route::get('/', 'HomeController@index');
+    Route::get('/', 'HomeController@index')->name('home');
 
     //users resource conrtol the creation/updation and deletion of users
     Route::get('users/search', 'UserController@searchUsers');
+    Route::post('users/update-password', 'UserController@updatePassword')->name('update-user-password');
     Route::resource('users', UserController::class);
     Route::get('/profile', function(){
         return view('modules.users.my-profile');
