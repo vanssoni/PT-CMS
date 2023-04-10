@@ -89,6 +89,6 @@ class RoadTestController extends Controller
 
         $roadTest = RoadTest::find($id);
         $roadTest->delete();
-        return redirect()->route('road-tests.index')->withSuccess('Road Test deleted Successfully!');
+        return back()->withSuccess('Road Test deleted Successfully!');
     }
 }

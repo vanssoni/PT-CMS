@@ -148,7 +148,7 @@ class UserController extends Controller
 
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('users.index')->withSuccess('User deleted Successfully!');
+        return back()->withSuccess('User deleted Successfully!');
     }
     public function updatePassword( Request $request){
         

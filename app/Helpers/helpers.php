@@ -5,6 +5,7 @@ use App\Models\Schedule;
 use App\Models\Student;
 use App\Models\Fee;
 use App\Models\User;
+use App\Models\RoadTest;
 use App\Models\Instructor;
 
 function getStatusBadge($status) {
@@ -103,4 +104,42 @@ function getHrefLinkOfUser($id){
         return url('instructors').'/'.@$instructor->id.'/edit';
     }
     return url('users').'/'.@$user->id.'/edit';
+}
+
+function getTotalRevenue(){
+    $fee =  Fee::sum('amount');
+    return number_format($fee , 2);
+}
+function getAllUsers(){
+    return User::with('roles')->whereHas('roles', function($q){
+        $q->whereNotIn('name', ['admin', 'student', 'instructor']);
+    })->count();
+}
+function getAllStudents(){
+    return User::with('roles')->whereHas('roles', function($q){
+        $q->where('name', 'student');
+    })->count();
+}
+function getAllInstructors(){
+    return User::with('roles')->whereHas('roles', function($q){
+        $q->where('name', 'instructor');
+    })->count();
+}
+function getRecentUsers(){
+    return User::with('roles')->whereHas('roles', function($q){
+        $q->whereNotIn('name', ['admin', 'student', 'instructor']);
+    })->latest()->limit(5)->get();
+}
+function getRecentStudents(){
+    return Student::with('user')->latest()->limit(5)->get();
+}
+function getUpcomingSechedules(){
+    return Schedule::with(['instructor', 'subject', 'course'])->where('date', '>=', date('Y-m-d'))
+    ->orderBy('date')
+    ->orderBy('from_time')->limit(5)->get();
+}
+function getUpcomingRoadTests(){
+    return RoadTest::with(['student'])->where('date', '>=', date('Y-m-d'))
+    ->orderBy('date')
+    ->limit(5)->get();
 }

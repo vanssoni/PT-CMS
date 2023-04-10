@@ -163,7 +163,7 @@ class StudentController extends Controller
 
         $student = User::find($id);
         $student->delete();
-        return redirect()->route('students.index')->withSuccess('Student deleted Successfully!');
+        return back()->withSuccess('Student deleted Successfully!');
     }
     public function getCourseStudents(Request $request){
         $courses = $request->input('courses');
