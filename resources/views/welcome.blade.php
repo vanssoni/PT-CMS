@@ -12,10 +12,10 @@
                                 <i class="mdi mdi-calendar-range"></i>
                             </span>
                         </div>
-                        <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-2">
+                        <a  target = '_blank' href="javascript: void(0);" class="btn btn-blue btn-sm ms-2">
                             <i class="mdi mdi-autorenew"></i>
                         </a>
-                        <a href="javascript: void(0);" class="btn btn-blue btn-sm ms-1">
+                        <a  target = '_blank' href="javascript: void(0);" class="btn btn-blue btn-sm ms-1">
                             <i class="mdi mdi-filter-variant"></i>
                         </a>
                     </form> --}}
@@ -37,7 +37,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a href="/fees">$ {{getTotalRevenue()}}</a></span></h3>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a  target = '_blank' href="/fees">$ {{getTotalRevenue()}}</a></span></h3>
                                 <p class="text-muted mb-1 text-truncate">Total Revenue</p>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a href="/users"> {{getAllUsers()}}</a></span></h3>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a  target = '_blank' href="/users"> {{getAllUsers()}}</a></span></h3>
                                 <p class="text-muted mb-1 text-truncate">Total Users</p>
                             </div>
                         </div>
@@ -77,7 +77,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a href="/instructors"> {{getAllInstructors()}}</a></span></h3>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a  target = '_blank' href="/instructors"> {{getAllInstructors()}}</a></span></h3>
                                 <p class="text-muted mb-1 text-truncate">Total Instructors</p>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-end">
-                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a href="/students"> {{getAllStudents()}}</a></span></h3>
+                                <h3 class="text-dark mt-1"><span data-plugin="counterup"><a  target = '_blank' href="/students"> {{getAllStudents()}}</a></span></h3>
                                 <p class="text-muted mb-1 text-truncate">Total Students</p>
                             </div>
                         </div>
@@ -113,18 +113,18 @@
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a  target = '_blank' href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Sales Report</a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Export Report</a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Profit</a>
+                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Profit</a>
                             <!-- item-->
-                            <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Action</a>
                         </div>
                     </div>
 
@@ -182,12 +182,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a  target = '_blank' href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a href="/users" class="dropdown-item">View All</a>
+                            <a  target = '_blank' href="/users" class="dropdown-item">View All</a>
                         </div>
                     </div>
 
@@ -247,12 +247,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a  target = '_blank' href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a href="/students" class="dropdown-item">View All</a>
+                            <a  target = '_blank' href="/students" class="dropdown-item">View All</a>
                         </div>
                     </div>
 
@@ -299,12 +299,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a  target = '_blank' href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a href="/schedules" class="dropdown-item">View All</a>
+                            <a  target = '_blank' href="/schedules" class="dropdown-item">View All</a>
                         </div>
                     </div>
 
@@ -346,12 +346,12 @@
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a  target = '_blank' href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end">
                             <!-- item-->
-                            <a href="/road-tests" class="dropdown-item">View All</a>
+                            <a  target = '_blank' href="/road-tests" class="dropdown-item">View All</a>
                         </div>
                     </div>
 
