@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use EloquentFilter\Filterable;
 
 class Student extends Model
 {
-    use HasFactory;
+    use HasFactory,Filterable;
     protected $guarded = [
         'id',
         'created_at',
@@ -93,5 +94,9 @@ class Student extends Model
         if(isset($this->courses)){
             return $this->courses()->pluck('course_id')->first();
         }
+    }
+    public function modelFilter()
+    {
+        return $this->provideFilter(\App\ModelFilters\StudentFilter::class);
     }
 }

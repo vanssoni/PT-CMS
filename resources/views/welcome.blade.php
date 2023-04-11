@@ -113,40 +113,24 @@
             <div class="card">
                 <div class="card-body">
                     <div class="dropdown float-end">
-                        <a  target = '_blank' href="index.html#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end">
-                            <!-- item-->
-                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Sales Report</a>
-                            <!-- item-->
-                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Export Report</a>
-                            <!-- item-->
-                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Profit</a>
-                            <!-- item-->
-                            <a  target = '_blank' href="javascript:void(0);" class="dropdown-item">Action</a>
-                        </div>
                     </div>
 
                     <h4 class="header-title mb-0">Total Revenue</h4>
 
                     <div class="widget-chart text-center" dir="ltr">
 
-                        <div id="total-revenue" class="mt-0"  data-colors="#f1556c"></div>
+                        <div id="total-revenue-students" class="mt-0"  data-colors="#f1556c"></div>
 
-                        <h5 class="text-muted mt-0">Total sales made today</h5>
-                        <h2>$178</h2>
-
-                        <p class="text-muted w-75 mx-auto sp-line-2">Traditional heading elements are designed to work best in the meat of your page content.</p>
-
+                        <h5 class="text-muted mt-0">Total Fee Collected Today </h5>
+                        <h2>${{getFeeCollectedToday()}}</h2>
                         <div class="row mt-3">
-                            <div class="col-4">
+                            <div class="col-6">
                                 <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
-                                <h4><i class="fe-arrow-up text-success me-1"></i>$1.4k</h4>
+                                {!!getStudentWeeKlyGrowth()!!}
                             </div>
-                            <div class="col-4">
+                            <div class="col-6">
                                 <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
-                                <h4><i class="fe-arrow-down text-danger me-1"></i>$15k</h4>
+                                {!!getStudentMonthlyGrowth()!!}
                             </div>
                         </div>
 
@@ -160,16 +144,16 @@
                 <div class="card-body pb-2">
                     <div class="float-end d-none d-md-inline-block">
                         <div class="btn-group mb-2">
-                            <button type="button" class="btn btn-xs btn-light">Today</button>
-                            <button type="button" class="btn btn-xs btn-light">Weekly</button>
-                            <button type="button" class="btn btn-xs btn-secondary">Monthly</button>
+                            <a href="?filter=week"> <button type="button" class="btn btn-xs  {{request()->filter == 'week'  ? 'btn-primary' : 'btn-light'}}">Weekly</button></a>
+                            <a href="?filter=month"><button type="button" class="btn btn-xs {{request()->filter == 'month'  ? 'btn-primary' : 'btn-light'}}">Monthly</button></a>
+                            <a href="?filter=year"><button type="button" class="btn btn-xs {{request()->filter == 'year' || !request()->filter  ? 'btn-primary' : 'btn-light'}}">Yearly</button></a>
                         </div>
                     </div>
 
-                    <h4 class="header-title mb-3">Sales Analytics</h4>
+                    <h4 class="header-title mb-3">Student Analytics</h4>
 
                     <div dir="ltr">
-                        <div id="sales-analytics" class="mt-4" data-colors="#1abc9c,#4a81d4"></div>
+                        <div id="student-analytics" class="mt-4" data-colors="#1abc9c,#4a81d4"></div>
                     </div>
                 </div>
             </div> <!-- end card -->
@@ -390,3 +374,43 @@
     </div>
 <!-- end row -->
 @endsection
+@push('scripts')
+    <script>
+        var colors = ["#f1556c"],
+        dataColors = $("#total-revenue-students").data("colors");
+        var graphData = "{{getStudentGraph()}}";
+		graphData =  JSON.parse(graphData.replace(/&quot;/g,'"'));
+        dataColors && (colors = dataColors.split(","));
+        var options = { series: [{{getTotalRevenuePercentage()}}], chart: { height: 242, type: "radialBar" }, plotOptions: { radialBar: { hollow: { size: "65%" } } }, colors: colors, labels: ["Revenue"] },
+            chart = new ApexCharts(document.querySelector("#total-revenue-students"), options);
+        chart.render();
+        colors = ["#1abc9c", "#4a81d4"];
+
+        (dataColors = $("#student-analytics").data("colors")) && (colors = dataColors.split(","));
+        options = {
+            series: [
+                { 
+                    name: "Student Count", 
+                    type: "column", 
+                    data: graphData.data 
+                },
+            ],
+            chart: { height: 378, type: "line", offsetY: 10 },
+            stroke: { width: [2, 3] },
+            plotOptions: { bar: { columnWidth: "50%" } },
+            colors: colors,
+            dataLabels: { enabled: !0, enabledOnSeries: [1] },
+            labels: graphData.categories,
+            // xaxis: { type: "datetime" },
+            legend: { offsetY: 7 },
+            grid: { padding: { bottom: 20 } },
+            fill: { type: "gradient", gradient: { shade: "light", type: "horizontal", shadeIntensity: 0.25, gradientToColors: void 0, inverseColors: !0, opacityFrom: 0.75, opacityTo: 0.75, stops: [0, 0, 0] } },
+            yaxis: [
+                { title: { text: "Total Students" } }
+            
+            ],
+        };
+        (chart = new ApexCharts(document.querySelector("#student-analytics"), options)).render(), $("#dash-daterange").flatpickr({ altInput: !0, mode: "range", altFormat: "F j, y", defaultDate: "today" });
+
+    </script>
+@endpush

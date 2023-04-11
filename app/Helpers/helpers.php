@@ -110,6 +110,20 @@ function getTotalRevenue(){
     $fee =  Fee::sum('amount');
     return number_format($fee , 2);
 }
+function getFeeCollectedToday(){
+    $fee =  Fee::where('created_at', 'Y-m-d')->sum('amount');
+    return number_format($fee , 2);
+}
+function getTotalRevenuePercentage(){
+
+    $feeTobePaid =  Student::get()->sum('total_fees');
+    $feePaid =  Fee::sum('amount');
+    if($feePaid && $feeTobePaid){
+
+        return round(($feePaid/$feeTobePaid)*100,2);
+    }
+    return 0;
+}
 function getAllUsers(){
     return User::with('roles')->whereHas('roles', function($q){
         $q->whereNotIn('name', ['admin', 'student', 'instructor']);
@@ -142,4 +156,64 @@ function getUpcomingRoadTests(){
     return RoadTest::with(['student'])->where('date', '>=', date('Y-m-d'))
     ->orderBy('date')
     ->limit(5)->get();
+}
+function getStudentGraph() {
+	$result = [
+		'categories' => [],
+		'data' => []
+	];
+	if(request()->filter == 'week' || request()->filter == 'month'){
+		$days =  (request()->filter == 'week' ? 7 : 30);
+		$startDate = now()->subDays($days);
+		$endDate = now();
+	  
+		$date = clone $startDate;
+		while ($date <= $endDate) {
+		  
+			$userCount = Student::filter(['createdAt' => $date])->count();
+			$result['categories'][] = $date->format('d F');
+			$result['data'][] = $userCount;
+			$date->addDay();
+		}
+	}else{
+		$i = 1;
+		while ($i <= 12) {
+		  
+			$userCount = Student::filter(['createdAtMonth' => array('year' => date('Y'), 'month' =>  $i)])->count();
+			$result['data'][] = $userCount;
+			$i++;
+		}
+		$result['categories']=  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','October','November','December'];
+	}
+	return json_encode($result);
+}
+function getStudentWeeKlyGrowth(){
+	$newCount = fee_counter(['startDate' => now()->subDays(7), 'endDate' => now()]);
+	$oldCount = fee_counter(['startDate' => now()->subDays(14), 'endDate' =>  now()->subDays(7)]);
+	return getTheGrowth($oldCount, $newCount);
+}
+function getStudentMonthlyGrowth(){
+	$newCount = fee_counter(['startDate' => now()->subDays(30), 'endDate' => now()]);
+	$oldCount = fee_counter(['startDate' => now()->subDays(60), 'endDate' =>  now()->subDays(30)]);
+	return getTheGrowth($oldCount, $newCount);
+}
+function getTheGrowth($oldCount , $newCount){
+    $growth = 100;
+    if(!$newCount){
+      $growth = 0;
+    }
+    if($newCount && $oldCount){
+      $growth = ($newCount - $oldCount) / $oldCount * 100;
+    }
+    if($growth < 0){
+        $html ="<h4><i class='fe-arrow-down text-danger me-1'></i>$".round($newCount, 2)."</h4>";
+    }else{
+        $html ="<h4><i class='fe-arrow-up text-success me-1'></i>$".round($newCount, 2)."</h4>";
+    }
+    return $html;
+  }
+  function fee_counter($data = [])
+{
+
+	return Fee::filter($data)->sum('amount');
 }
